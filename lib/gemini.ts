@@ -9,7 +9,7 @@ import type { RunMeta } from "./types.ts";
 const RUNS_DIR = process.env.RUNS_DIR ?? path.join(process.cwd(), "runs");
 const CALL_LOG = path.join(RUNS_DIR, "call-log.jsonl");
 const ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models";
-const TIMEOUT_MS = 60_000;
+const TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS ?? 60_000);
 
 export const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
 
@@ -160,7 +160,7 @@ export async function generateJson(args: CallArgs): Promise<{ data: any; meta: R
     await logCall({ stage: args.stage, model, runId, status: timedOut ? "timeout" : "network_error" });
     throw new PipelineError(
       timedOut ? "timeout" : "network_error",
-      timedOut ? "The model took longer than 60 seconds." : "Could not reach the model.",
+      timedOut ? `The model took longer than ${Math.round(TIMEOUT_MS / 1000)} seconds.` : "Could not reach the model.",
       504,
     );
   }
@@ -169,14 +169,14 @@ export async function generateJson(args: CallArgs): Promise<{ data: any; meta: R
   await logCall({ stage: args.stage, model, runId, status: httpStatus, durationMs });
 
   if (httpStatus !== 200) {
+    if (httpStatus === 429) {
+      throw new PipelineError("rate_limited", "The free model quota is used up for now.", 429);
+    }
+    if (httpStatus === 503) {
+      throw new PipelineError("overloaded", "The model is overloaded right now. Try again in a few minutes.", 503);
+    }
     const detail = String(response?.error?.message ?? "").slice(0, 200);
-    throw new PipelineError(
-      httpStatus === 429 ? "rate_limited" : "model_error",
-      httpStatus === 429
-        ? "The free model quota is used up for now."
-        : `The model returned an error (${httpStatus}). ${detail}`,
-      httpStatus === 429 ? 429 : 502,
-    );
+    throw new PipelineError("model_error", `The model returned an error (${httpStatus}). ${detail}`, 502);
   }
 
   if (process.env.RECORD !== "0") {
