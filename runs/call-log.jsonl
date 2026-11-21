@@ -1,0 +1,10 @@
+{"date":"2026-11-21","at":"2026-11-21T11:22:12.995Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-21","at":"2026-11-21T11:26:26.584Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-21","at":"2026-11-21T11:26:40Z","stage":"probe","model":"gemini-flash-latest","runId":"manual-minimal-probe","status":"see docs/build-log.md"}
+{"date":"2026-11-21","at":"2026-11-21T11:27:43Z","stage":"probe","model":"gemini-3.8-flash","runId":"manual-minimal-probe","status":"000 45.001153s"}
+{"date":"2026-11-21","at":"2026-11-21T11:27:48Z","stage":"probe","model":"gemini-3.5-flash","runId":"manual-minimal-probe","status":"503 5.454609s"}
+{"date":"2026-11-21","at":"2026-11-21T11:27:49Z","stage":"probe","model":"gemini-2.5-flash","runId":"manual-minimal-probe","status":"404 0.332162s"}
+{"date":"2026-11-21","at":"2026-11-21T11:29:12.578Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-21","at":"2026-11-21T11:29:29.689Z","stage":"extract","model":"gemini-flash-lite-latest","runId":"extract__extract-v1__gemini-flash-lite-latest__e056488a2e9bdf5f","status":503,"durationMs":9837}
+{"date":"2026-11-21","at":"2026-11-21T11:31:08.482Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-21","at":"2026-11-21T11:32:07.413Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":503,"durationMs":5636}
