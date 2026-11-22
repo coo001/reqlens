@@ -13,7 +13,20 @@ import type {
 
 type Mode = "live" | "sample";
 type Phase = "idle" | "extracting" | "comparing" | "done";
-type Checked = { notice: string; draft: string; mode: Mode; extract: ExtractResponse; compare: CompareResponse };
+type Checked = {
+  notice: string;
+  draft: string;
+  mode: Mode;
+  extract: ExtractResponse;
+  compare: CompareResponse;
+  // Verdicts from the previous check of the same notice, to show what changed.
+  prev: Record<string, Verdict> | null;
+};
+
+// Long lists fold the Met rows away so the gaps stay on the first screen.
+const FOLD_MET_ABOVE = 15;
+// Errors worth one automatic retry: the provider was busy or slow, not refusing.
+const RETRYABLE = new Set(["overloaded", "timeout", "network_error", "empty_response", "malformed_response", "no_answer"]);
 
 const VERDICT_ORDER: Verdict[] = ["missing", "partial", "check", "met"];
 const VERDICT_LABEL: Record<Verdict, string> = {
@@ -33,18 +46,52 @@ const CHECK_REASON: Record<CheckReason, string> = {
 
 const clean = (s: string) => s.replace(/\r\n/g, "\n").trim();
 
-async function post<T>(url: string, body: unknown): Promise<T> {
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
+class ApiFailure extends Error {
+  code: string;
+  constructor(code: string, message: string) {
+    super(message);
+    this.code = code;
+  }
+}
+
+async function postOnce<T>(url: string, body: unknown): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    throw new ApiFailure("network_error", "The server could not be reached.");
+  }
   const json = (await res.json().catch(() => null)) as T | ApiError | null;
   if (!res.ok || !json || "error" in (json as object)) {
-    throw new Error((json as ApiError | null)?.error?.message ?? "The server did not answer. Try again.");
+    const err = (json as ApiError | null)?.error;
+    throw new ApiFailure(err?.code ?? "no_answer", err?.message ?? "The server did not answer.");
   }
   return json as T;
 }
+
+/** One automatic retry for busy/slow failures; anything else is reported at once. */
+async function post<T>(url: string, body: unknown, onRetry: () => void): Promise<T> {
+  try {
+    return await postOnce<T>(url, body);
+  } catch (e) {
+    if (!(e instanceof ApiFailure) || !RETRYABLE.has(e.code)) throw e;
+    onRetry();
+    await new Promise((r) => setTimeout(r, 3000));
+    return postOnce<T>(url, body);
+  }
+}
+
+// Small stable hash, so a confirmation is remembered per notice and requirement.
+function hash(s: string): string {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
+}
+const CONFIRM_KEY = "reqlens:confirmed";
 
 function jumpTo(id: string) {
   const el = document.getElementById(id);
@@ -81,6 +128,11 @@ export default function Page() {
   const [error, setError] = useState<string | null>(null);
   const [checked, setChecked] = useState<Checked | null>(null);
   const [stepNote, setStepNote] = useState<{ reqs: number; discarded: number } | null>(null);
+  // The last extraction is kept even if the comparison fails, so a retry
+  // resumes from the comparison instead of reading the notice again.
+  const [kept, setKept] = useState<{ notice: string; mode: Mode; extract: ExtractResponse } | null>(null);
+  const [retrying, setRetrying] = useState(false);
+  const [confirmed, setConfirmed] = useState<Set<string>>(new Set());
   const resultsRef = useRef<HTMLElement>(null);
   const busy = phase === "extracting" || phase === "comparing";
 
@@ -92,14 +144,19 @@ export default function Page() {
       return;
     }
     setError(null);
+    setRetrying(false);
+    let stage = "Reading the notice";
     try {
       // The notice is only re-read when it changed; a draft edit costs one call.
-      let extract = checked && checked.notice === n && checked.mode === mode ? checked.extract : null;
+      let extract = kept && kept.notice === n && kept.mode === mode ? kept.extract : null;
       if (!extract) {
         setStepNote(null);
         setPhase("extracting");
-        extract = await post<ExtractResponse>("/api/extract", { notice: n, mode });
+        extract = await post<ExtractResponse>("/api/extract", { notice: n, mode }, () => setRetrying(true));
+        setKept({ notice: n, mode, extract });
+        setRetrying(false);
       }
+      stage = "Comparing with your draft";
       setStepNote({ reqs: extract.requirements.length, discarded: extract.discarded });
       if (extract.requirements.length === 0) {
         setPhase("idle");
@@ -107,25 +164,33 @@ export default function Page() {
         return;
       }
       setPhase("comparing");
-      const compare = await post<CompareResponse>("/api/compare", {
-        notice: n,
-        draft: d,
-        requirements: extract.requirements,
-        mode,
-      });
-      setChecked({ notice: n, draft: d, mode, extract, compare });
+      const compare = await post<CompareResponse>(
+        "/api/compare",
+        { notice: n, draft: d, requirements: extract.requirements, mode },
+        () => setRetrying(true),
+      );
+      setRetrying(false);
+      const same = checked && checked.notice === n && checked.mode === mode && checked.draft !== d;
+      const prev = same ? Object.fromEntries(checked.compare.results.map((r) => [r.id, r.verdict])) : null;
+      setChecked({ notice: n, draft: d, mode, extract, compare, prev });
       setPhase("done");
       requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ block: "start", behavior: "smooth" }));
     } catch (e) {
+      setRetrying(false);
       setPhase(checked ? "done" : "idle");
-      setError(e instanceof Error ? e.message : "Something went wrong. Try again.");
+      const msg = e instanceof Error ? e.message : "Something went wrong.";
+      const resume =
+        stage === "Comparing with your draft"
+          ? " The requirement list is kept: checking again starts from the comparison."
+          : "";
+      setError(`${stage} failed: ${msg}${resume}`);
     }
   }
 
-  async function runSample() {
+  async function runSample(id = "gap") {
     setError(null);
     try {
-      const res = await fetch("/api/sample");
+      const res = await fetch(`/api/sample?id=${id}`);
       const sample = await res.json();
       setNotice(sample.notice);
       setDraft(sample.draft);
@@ -136,7 +201,29 @@ export default function Page() {
   }
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("sample") === "1") void runSample();
+    try {
+      setConfirmed(new Set(JSON.parse(localStorage.getItem(CONFIRM_KEY) ?? "[]")));
+    } catch {
+      // storage unavailable: confirmations last for this page only
+    }
+  }, []);
+
+  function toggleConfirmed(key: string) {
+    setConfirmed((old) => {
+      const next = new Set(old);
+      if (!next.delete(key)) next.add(key);
+      try {
+        localStorage.setItem(CONFIRM_KEY, JSON.stringify([...next]));
+      } catch {
+        // storage unavailable
+      }
+      return next;
+    });
+  }
+
+  useEffect(() => {
+    const sample = new URLSearchParams(window.location.search).get("sample");
+    if (sample) void runSample(sample === "wordlimit" ? "wordlimit" : "gap");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -151,6 +238,67 @@ export default function Page() {
   ) as Record<Verdict, number>;
   const canRecheck = !!checked && checked.notice === clean(notice) && checked.mode === "live";
   const discardedTotal = checked ? checked.extract.discarded + checked.compare.discardedEvidence : 0;
+  const changed = checked?.prev ? rows.filter((r) => checked.prev![r.req.id] && checked.prev![r.req.id] !== r.res.verdict) : [];
+  const foldMet = rows.length > FOLD_MET_ABOVE && counts.met > 0;
+  const confirmKey = (req: Requirement) => hash(`${checked?.notice ?? ""}|${req.quote}|${req.summary}`);
+
+  const renderRow = ({ req, res }: { req: Requirement; res: CompareResult }) => {
+    const was = checked?.prev?.[req.id];
+    const key = confirmKey(req);
+    return (
+      <li key={req.id} className="row">
+        <div className="ask">
+          <p className="req-line">
+            <span className="req-id">{req.id}</span>
+            <span className={`level ${req.level}`}>{LEVEL_LABEL[req.level]}</span>
+          </p>
+          <p className="req-summary">{req.summary}</p>
+          <button type="button" className="quote" onClick={() => jumpTo(`n-${req.id}`)} title="Show in the notice">
+            {req.quote}
+          </button>
+        </div>
+        <div className="shows">
+          <p className="verdict-line">
+            {was && was !== res.verdict && (
+              <span className="was" title="Verdict at the previous check">
+                {VERDICT_LABEL[was]} →{" "}
+              </span>
+            )}
+            <span className={`chip ${res.verdict}`}>
+              <span aria-hidden="true">{VERDICT_GLYPH[res.verdict]}</span>{" "}
+              {res.counted && res.verdict === "missing" ? "Not met" : VERDICT_LABEL[res.verdict]}
+            </span>
+          </p>
+          {res.verdict === "check" ? (
+            <>
+              <p className="note">{CHECK_REASON[res.checkReason ?? "model_cannot_tell"]}</p>
+              <label className="confirm">
+                <input type="checkbox" checked={confirmed.has(key)} onChange={() => toggleConfirmed(key)} /> I’ve
+                confirmed this
+              </label>
+            </>
+          ) : (
+            <>
+              {res.note && <p className="note">{res.note}</p>}
+              {res.evidence && (
+                <button
+                  type="button"
+                  className={`quote ${res.verdict}`}
+                  onClick={() => jumpTo(`d-${req.id}`)}
+                  title="Show in your draft"
+                >
+                  {res.evidence}
+                </button>
+              )}
+              {req.checkable === "partial" && res.verdict !== "missing" && (
+                <p className="aside">The proof is outside the text. Confirm it yourself.</p>
+              )}
+            </>
+          )}
+        </div>
+      </li>
+    );
+  };
 
   return (
     <main>
@@ -200,12 +348,15 @@ export default function Page() {
           <button type="submit" className="primary" disabled={busy}>
             {canRecheck ? "Re-check draft" : "Check my draft"}
           </button>
-          <button type="button" className="quiet" disabled={busy} onClick={() => void runSample()}>
+          <button type="button" className="quiet" disabled={busy} onClick={() => void runSample("gap")}>
             Try a sample
           </button>
+          <button type="button" className="quiet" disabled={busy} onClick={() => void runSample("wordlimit")}>
+            Sample: word limit
+          </button>
           <p className="disclosure">
-            Your text is sent to Google’s Gemini API to be processed. English text only. The sample replays a saved
-            response and sends nothing.
+            Your text is sent to Google’s Gemini API to be processed. English text only. The samples replay saved
+            responses and send nothing.
           </p>
         </div>
       </form>
@@ -221,6 +372,7 @@ export default function Page() {
           <li className={phase === "extracting" ? "active" : stepNote ? "done" : ""}>
             <span className="who ai">AI</span> Read the notice and list its requirements
             {stepNote && <em> · {stepNote.reqs + stepNote.discarded} found</em>}
+            {retrying && phase === "extracting" && <em> · busy, trying once more</em>}
           </li>
           <li className={stepNote ? "done" : ""}>
             <span className="who code">Code</span> Quote Lock: keep only quotes found word for word in the notice
@@ -228,6 +380,7 @@ export default function Page() {
           </li>
           <li className={phase === "comparing" ? "active" : phase === "done" ? "done" : ""}>
             <span className="who ai">AI</span> Compare each requirement with your draft
+            {retrying && phase === "comparing" && <em> · busy, trying once more</em>}
           </li>
           <li className={phase === "done" ? "done" : ""}>
             <span className="who code">Code</span> Lock the draft quotes and set aside what text can’t prove
@@ -245,6 +398,11 @@ export default function Page() {
                 <span aria-hidden="true">{VERDICT_GLYPH[v]}</span> {counts[v]} {VERDICT_LABEL[v].toLowerCase()}
               </span>
             ))}
+            {checked.prev && (
+              <span className="summary-meta">
+                {changed.length} {changed.length === 1 ? "verdict" : "verdicts"} changed since the last check
+              </span>
+            )}
             <span className="summary-meta">
               {discardedTotal} unverifiable {discardedTotal === 1 ? "quote" : "quotes"} discarded
             </span>
@@ -255,53 +413,15 @@ export default function Page() {
             <span>What your draft shows</span>
           </div>
 
-          <ul className="rows">
-            {rows.map(({ req, res }) => (
-              <li key={req.id} className="row">
-                <div className="ask">
-                  <p className="req-line">
-                    <span className="req-id">{req.id}</span>
-                    <span className={`level ${req.level}`}>{LEVEL_LABEL[req.level]}</span>
-                  </p>
-                  <p className="req-summary">{req.summary}</p>
-                  <button type="button" className="quote" onClick={() => jumpTo(`n-${req.id}`)} title="Show in the notice">
-                    {req.quote}
-                  </button>
-                </div>
-                <div className="shows">
-                  <span className={`chip ${res.verdict}`}>
-                    <span aria-hidden="true">{VERDICT_GLYPH[res.verdict]}</span>{" "}
-                    {res.counted && res.verdict === "missing" ? "Not met" : VERDICT_LABEL[res.verdict]}
-                  </span>
-                  {res.verdict === "check" ? (
-                    <>
-                      <p className="note">{CHECK_REASON[res.checkReason ?? "model_cannot_tell"]}</p>
-                      <label className="confirm">
-                        <input type="checkbox" /> I’ve confirmed this
-                      </label>
-                    </>
-                  ) : (
-                    <>
-                      {res.note && <p className="note">{res.note}</p>}
-                      {res.evidence && (
-                        <button
-                          type="button"
-                          className={`quote ${res.verdict}`}
-                          onClick={() => jumpTo(`d-${req.id}`)}
-                          title="Show in your draft"
-                        >
-                          {res.evidence}
-                        </button>
-                      )}
-                      {req.checkable === "partial" && res.verdict !== "missing" && (
-                        <p className="aside">The proof is outside the text. Confirm it yourself.</p>
-                      )}
-                    </>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ul className="rows">{(foldMet ? rows.filter((r) => r.res.verdict !== "met") : rows).map(renderRow)}</ul>
+          {foldMet && (
+            <details className="met-group">
+              <summary>
+                Show the {counts.met} met {counts.met === 1 ? "requirement" : "requirements"}
+              </summary>
+              <ul className="rows">{rows.filter((r) => r.res.verdict === "met").map(renderRow)}</ul>
+            </details>
+          )}
 
           <h2>Where the quotes come from</h2>
           <div className="sources">

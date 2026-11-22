@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { fail, failFrom, MAX_DRAFT_CHARS, MAX_NOTICE_CHARS, readText } from "@/lib/http.ts";
+import { clientLimited, fail, failFrom, MAX_DRAFT_CHARS, MAX_NOTICE_CHARS, readText } from "@/lib/http.ts";
 import { compareDraft } from "@/lib/pipeline.ts";
 import { locateQuote } from "@/lib/quoteLock.ts";
 import { CHECKABLE, LEVELS, TYPES, type Requirement } from "@/lib/types.ts";
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const MAX_REQUIREMENTS = 200;
 
@@ -49,8 +49,11 @@ export async function POST(req: Request) {
   }
   const requirements = relock(body?.requirements, notice);
   if (!requirements) return fail("bad_requirements", "The requirement list does not match the notice.", 400);
+  const sample = body?.mode === "sample";
+  const limited = sample ? null : clientLimited(req, 1);
+  if (limited) return limited;
   try {
-    return NextResponse.json(await compareDraft(requirements, draft, body?.mode === "sample"));
+    return NextResponse.json(await compareDraft(requirements, draft, sample));
   } catch (e) {
     return failFrom(e);
   }

@@ -9,7 +9,8 @@ import type { RunMeta } from "./types.ts";
 const RUNS_DIR = process.env.RUNS_DIR ?? path.join(process.cwd(), "runs");
 const CALL_LOG = path.join(RUNS_DIR, "call-log.jsonl");
 const ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models";
-const TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS ?? 60_000);
+// Comparisons have taken up to 44 s; the routes allow 120 s (maxDuration).
+const TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS ?? 100_000);
 
 export const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
 
@@ -73,6 +74,27 @@ async function logCall(entry: Record<string, unknown>): Promise<void> {
   }
 }
 
+// Fault injection for testing recovery without spending calls.
+// FAULT="compare:overloaded:1" makes the next 1 compare call (live or replayed)
+// fail as if the model were overloaded. Codes: overloaded, timeout, rate_limited, malformed_response.
+const FAULTS: Record<string, [PipelineError["code"], string, number]> = {
+  overloaded: ["overloaded", "The model is overloaded right now. Try again in a few minutes.", 503],
+  timeout: ["timeout", "The model took too long to answer.", 504],
+  rate_limited: ["rate_limited", "The free model quota is used up for now.", 429],
+  malformed_response: ["malformed_response", "The model's answer was not valid JSON.", 502],
+};
+const faultsUsed: Record<string, number> = {};
+
+function injectedFault(stage: string): PipelineError | null {
+  const [fStage, code, times = "1"] = (process.env.FAULT ?? "").split(":");
+  if (fStage !== stage || !FAULTS[code]) return null;
+  const used = faultsUsed[stage] ?? 0;
+  if (used >= Number(times)) return null;
+  faultsUsed[stage] = used + 1;
+  const [c, message, status] = FAULTS[code];
+  return new PipelineError(c, `${message} (injected fault)`, status);
+}
+
 function runPath(runId: string): string {
   return path.join(RUNS_DIR, `${runId}.json`);
 }
@@ -98,6 +120,10 @@ export async function generateJson(args: CallArgs): Promise<{ data: any; meta: R
   const model = args.model ?? DEFAULT_MODEL;
   const inputHash = createHash("sha256").update(args.prompt).digest("hex").slice(0, 16);
   const runId = `${args.stage}__${args.promptVersion}__${model}__${inputHash}`;
+
+  // Before replay too, so recovery can be shown on the recorded sample for free.
+  const fault = injectedFault(args.stage);
+  if (fault) throw fault;
 
   if (args.forceReplay || process.env.REPLAY === "1") {
     let saved: SavedRun;

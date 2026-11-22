@@ -463,3 +463,24 @@ mark.flash {
     scroll-behavior: auto;
   }
 }
+
+.verdict-line {
+  margin: 0;
+}
+
+.was {
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+
+.met-group {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.met-group > summary {
+  cursor: pointer;
+  padding: 0.75rem 0;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}

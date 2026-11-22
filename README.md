@@ -29,13 +29,14 @@ cp .env.example .env.local   # then put a free-tier Gemini API key in it
 npm run dev                  # http://localhost:3000
 ```
 
-Without a key you can still press **Try a sample**, or open `http://localhost:3000/?sample=1`:
-the sample replays a response saved in `runs/` and makes no API call. The screen labels every result as
+Without a key you can still press **Try a sample** or **Sample: word limit**, or open
+`http://localhost:3000/?sample=1` (`?sample=wordlimit`): the samples replay responses saved in `runs/` and make
+no API call. The screen labels every result as
 either "Live run" or "Recorded sample".
 
 ```bash
 npm test          # unit tests: Quote Lock, word counting, scorer self-check
-node eval/score.ts  # re-score the saved responses, writes eval/results.md (no API calls)
+node eval/score.ts  # re-score the saved responses, every prompt version side by side (no API calls)
 npm run typecheck
 npm run build
 ```
@@ -49,7 +50,15 @@ npm run build
 | `REPLAY` | `0` | `1` = never call the model. Answer only from `runs/`; a missing recording is an error, not a silent live call |
 | `RECORD` | `1` | Save each live request and raw response to `runs/` |
 | `DAILY_CALL_CAP` | `13` | Live calls allowed per day (KST). Failed calls count |
-| `GEMINI_TIMEOUT_MS` | `60000` | Per-call timeout |
+| `GEMINI_TIMEOUT_MS` | `100000` | Per-call timeout. The API routes allow 120 s |
+| `IP_DAILY_CAP` | `6` on Vercel, off locally | Live calls per visitor address per day. In memory, so per server instance only |
+| `FAULT` | none | Test switch: `compare:overloaded:1` makes the next compare call fail (also on the recorded samples). Codes: `overloaded`, `timeout`, `rate_limited`, `malformed_response` |
+
+## When a step fails
+
+A busy or slow answer (overloaded, timeout, empty or broken JSON) is retried once automatically, and the step list
+says so. If it fails again the screen names the step that failed. The requirement list from step 1 is kept, so
+checking again resumes from the comparison and costs one call, not two. Quota and cap errors are not retried.
 
 ## Recorded runs
 
@@ -69,7 +78,8 @@ before the build period; no human verified the answer key.
 - English text only. No PDF or image input.
 - It checks a draft against the pasted text. It does not predict judging results.
 - Requirements that cannot be judged from text are listed for you to confirm; they get no verdict.
-- One provider (Gemini free tier). When the model is overloaded or the daily cap is reached, live checks stop and only the recorded sample works.
+- One provider (Gemini free tier). When the model is overloaded or the daily cap is reached, live checks stop and only the recorded samples work.
+- Long lists fold the Met rows away (more than 15 requirements). Confirmations you tick are kept in this browser only.
 
 ## What existed before the build period
 
@@ -83,7 +93,7 @@ made-up drafts (two complete, six with one planted gap). No human verified the a
 ```
 app/            UI (app/page.tsx) and the three API routes
 lib/            quoteLock.ts, gemini.ts (client, record/replay, call cap), prompts.ts, pipeline.ts
-samples/        the notice and draft used by "Try a sample"
+samples/        the notices and drafts used by the two samples
 runs/           recorded model responses and the call log
 docs/           build log
 ```
