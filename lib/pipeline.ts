@@ -6,6 +6,7 @@ import {
   EXTRACT_VERSION,
   comparePrompt,
   extractPrompt,
+  type CompareVersion,
 } from "./prompts.ts";
 import { countWords, limitText, parseWordLimit, withinLimit } from "./counted.ts";
 import { locateQuote } from "./quoteLock.ts";
@@ -67,6 +68,7 @@ export async function compareDraft(
   requirements: Requirement[],
   draft: string,
   forceReplay: boolean,
+  version: CompareVersion = COMPARE_VERSION,
 ): Promise<CompareResponse> {
   const judged = requirements.filter((r) => r.checkable !== "no");
   if (requirements.length === 0) {
@@ -78,8 +80,8 @@ export async function compareDraft(
   if (judged.length > 0) {
     const out = await generateJson({
       stage: "compare",
-      promptVersion: COMPARE_VERSION,
-      prompt: comparePrompt(judged, draft),
+      promptVersion: version,
+      prompt: comparePrompt(judged, draft, version),
       schema: COMPARE_SCHEMA,
       forceReplay,
     });
