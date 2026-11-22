@@ -80,3 +80,38 @@ The recorded sample ("Try a sample") is the `A_gap2` pair, so it currently shows
 part was removed. It is left as recorded until the prompt revision is run.
 
 Who checked: the code was written and the results were read by an AI (Claude). No human review so far.
+
+### Evening: `compare-v2` (10 live calls, 0 failures; quota had reset at 17:00 KST)
+
+`compare-v2` was committed (de9f544) before the two unseen gap drafts were run. Then `B_gap1` and `B_gap2` ran
+on `compare-v1` (2 calls), then all 8 drafts on `compare-v2` with the extraction replayed (8 calls). The runs
+went through `scripts/compare.ts`, which calls the pipeline directly instead of the dev server.
+
+| | `compare-v1` | `compare-v2` |
+|---|---|---|
+| Planted gaps flagged (shown, after code steps) | 1 of 6 | 4 of 6 |
+| ... by the model alone | 0 of 6 | 3 of 6 |
+| The two drafts not seen while writing v2 (`B_gap1`, `B_gap2`) | 0 of 2 | 0 of 2 |
+| Rows flagged on the two complete drafts | 1 | 6, then 5 after the conduct-rule step below |
+| Comparison call time | 17–68 s | 34–57 s |
+
+What this says, plainly: v2 fixed the three gaps it was written against and did not fix the two it was not.
+Its stricter rule also costs wrong flags. Two kinds were seen:
+
+- **Prohibitions read as missing.** `A_complete`: "Do not publish passwords" was shown as Missing because the
+  draft never mentions passwords. Silence is not a breach, so the code now shows a conduct rule that the model
+  calls missing as "Check yourself" with its own reason (`rule_not_mentioned`). This is a code step, applied the
+  same way to every saved run; it removed 1 wrong flag and changed no gap result.
+- **Requirements answered in two places.** `A_complete` credits libraries in one paragraph and the AI coding
+  assistant in the next; `B_complete` describes the challenge and its effect on the future in separate
+  paragraphs. v2 asks for one cited span that satisfies the whole requirement, so both became Partial. The same
+  one-span rule is likely why `B_gap1`/`B_gap2` still pass: one paragraph that touches the requirement is
+  enough. Next: let the model cite one span per part of the requirement and show Met only when every part
+  has a locked span. That would be `compare-v3`, and all 8 drafts are now development cases, so its result
+  can only be reported as "tuned on these drafts".
+
+The recorded sample (`A_gap2`) now shows the removed part as Partial and is kept. Screens:
+`docs/screens/sample_gap_1440.png` and `docs/screens/sample_wordlimit_390.png` (the 390 px view was taken
+inside a 390 px frame because headless Chrome will not open a window that narrow).
+
+Who checked: the code was written and the results were read by an AI (Claude). No human review so far.

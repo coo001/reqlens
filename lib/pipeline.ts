@@ -112,7 +112,11 @@ export async function compareDraft(
       };
     }
     if (!r) return { ...none, verdict: "check", note: "", checkReason: "no_verdict" };
-    if (r.verdict === "missing") return { ...none, verdict: "missing", note };
+    if (r.verdict === "missing") {
+      // "Do not publish passwords" is not missing from a draft that never mentions passwords.
+      if (req.type === "conduct") return { ...none, verdict: "check", note, checkReason: "rule_not_mentioned" };
+      return { ...none, verdict: "missing", note };
+    }
     if (r.verdict === "met" || r.verdict === "partial") {
       const span = typeof r.evidence === "string" ? locateQuote(draft, r.evidence) : null;
       if (!span) {

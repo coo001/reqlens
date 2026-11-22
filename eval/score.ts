@@ -237,7 +237,7 @@ out.push(
     return [
       `| ${v} | S0 raw model output | ${ev} | ${g.filter((r) => r.detectedS0 === false).length} | ${wrong} of ${items} |`,
       `| ${v} | S1 + Quote Lock (code) | 0${ev ? ` (${ev} moved to Check yourself)` : ""} | ${g.filter((r) => r.detectedS0 === false).length} | ${wrong} of ${items} |`,
-      `| ${v} | S2 + Counted (code) | 0 | ${g.filter((r) => r.detectedS2 === false).length} | 0 of ${items} (the count is computed, not judged) |`,
+      `| ${v} | S2 + Counted and the conduct-rule step (code) | 0 | ${g.filter((r) => r.detectedS2 === false).length} | 0 of ${items} (the count is computed, not judged) |`,
     ].join("\n");
   }, draftRows),
   "",

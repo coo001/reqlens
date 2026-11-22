@@ -7,8 +7,6 @@ How to read this:
 - The answer key (145 items over 5 notices) was written before the build period by two AI models from different companies and reconciled. **No human verified the answer key.**
 - The sample is small: 5 notices, 8 drafts, 6 planted gaps. One run per input at temperature 0.
 
-**Not run yet (no saved response):** compare-v1 comparison of B_gap1_future; compare-v1 comparison of B_gap2_persevere; compare-v2 comparison of A_complete; compare-v2 comparison of A_gap1_problem; compare-v2 comparison of A_gap2_ai_details; compare-v2 comparison of A_gap3_credits; compare-v2 comparison of B_complete; compare-v2 comparison of B_gap1_future; compare-v2 comparison of B_gap2_persevere; compare-v2 comparison of B_gap3_overlength.
-
 ## Requirement extraction, by stage
 
 | Stage | Precision (tool items that match a key item) | Recall, required items | Recall, all items | Items shown with a quote that is not in the notice |
@@ -38,11 +36,20 @@ Each gap draft is a complete draft with one paragraph removed (or, for the last 
 | Draft | What was changed | Key item | Prompt | S0/S1: model verdict | S2: shown after code steps | Detected (model alone) | Detected (shown) |
 |---|---|---|---|---|---|---|---|
 | A_gap1_problem | problem explanation removed | S2-13 | compare-v1 | R11 met | R11 met | **no** | **no** |
+| A_gap1_problem | problem explanation removed | S2-13 | compare-v2 | R11 partial | R11 partial | yes | yes |
 | A_gap2_ai_details | AI implementation details removed | S2-14 | compare-v1 | R12 met | R12 met | **no** | **no** |
+| A_gap2_ai_details | AI implementation details removed | S2-14 | compare-v2 | R12 partial | R12 partial | yes | yes |
 | A_gap3_credits | credits paragraph removed | S2-06, S2-07 | compare-v1 | R04 met, R05 met | R04 met, R05 met | **no** | **no** |
+| A_gap3_credits | credits paragraph removed | S2-06, S2-07 | compare-v2 | R04 partial, R05 met | R04 partial, R05 met | yes | yes |
+| B_gap1_future | "shaped your future" part removed | S5-07 | compare-v1 | R06 met | R06 met | **no** | **no** |
+| B_gap1_future | "shaped your future" part removed | S5-07 | compare-v2 | R06 met | R06 met | **no** | **no** |
+| B_gap2_persevere | "persevered" part removed | S5-06 | compare-v1 | R06 met | R06 met | **no** | **no** |
+| B_gap2_persevere | "persevered" part removed | S5-06 | compare-v2 | R06 met | R06 met | **no** | **no** |
 | B_gap3_overlength | 537 words against a 500-word limit | S5-05 | compare-v1 | R05 cannot_tell | R05 missing | **no** | yes |
+| B_gap3_overlength | 537 words against a 500-word limit | S5-05 | compare-v2 | R05 cannot_tell | R05 missing | **no** | yes |
 
-Detected with `compare-v1`: **1 of 4 run** (6 planted in total); by the model alone, before the code steps: 0 of 4.
+Detected with `compare-v1`: **1 of 6 run** (6 planted in total); by the model alone, before the code steps: 0 of 6.
+Detected with `compare-v2`: **4 of 6 run** (6 planted in total); by the model alone, before the code steps: 3 of 6.
 
 ## Complete drafts: rows flagged although nothing was removed
 
@@ -50,15 +57,21 @@ Detected with `compare-v1`: **1 of 4 run** (6 planted in total); by the model al
 |---|---|---|---|---|---|---|---|
 | A_complete | compare-v1 | 30 | 0 | 0 | 11 | 19 | none |
 | B_complete | compare-v1 | 14 | 1 | 0 | 7 | 6 | R08 missing: Submit your contact information. |
+| A_complete | compare-v2 | 30 | 1 | 2 | 12 | 15 | R04 partial: Credit any external libraries, projects, APIs, pretrained models, or AI coding assistants used.; R05 partial: Disclose the use of any external libraries, projects, APIs, pretrained models, or AI coding assistants.; R17 missing: Demonstrate creativity and originality. |
+| B_complete | compare-v2 | 14 | 1 | 1 | 7 | 5 | R06 partial: Describe a challenge you persevered through and how it shaped your future.; R08 missing: Submit your contact information. |
 
 ## Comparison, by stage (all drafts run so far)
 
 | Prompt | Stage | Verdicts shown with evidence that is not in the draft | Planted gap shown as Met | Word-limit rows without a correct verdict |
 |---|---|---|---|---|
-| compare-v1 | S0 raw model output | 0 | 4 | 2 of 2 |
-| compare-v1 | S1 + Quote Lock (code) | 0 | 4 | 2 of 2 |
-| compare-v1 | S2 + Counted (code) | 0 | 3 | 0 of 2 (the count is computed, not judged) |
+| compare-v1 | S0 raw model output | 0 | 6 | 3 of 4 |
+| compare-v1 | S1 + Quote Lock (code) | 0 | 6 | 3 of 4 |
+| compare-v1 | S2 + Counted and the conduct-rule step (code) | 0 | 5 | 0 of 4 (the count is computed, not judged) |
+| compare-v2 | S0 raw model output | 0 | 3 | 4 of 4 |
+| compare-v2 | S1 + Quote Lock (code) | 0 | 3 | 4 of 4 |
+| compare-v2 | S2 + Counted and the conduct-rule step (code) | 0 | 2 | 0 of 4 (the count is computed, not judged) |
 
 Word-limit rows: the comparison prompt tells the model not to count words, so at S0 and S1 its answer for these rows is usually "cannot tell"; that is counted here as not correct. At S2 the verdict comes from the code's word count.
 
-Comparison calls with `compare-v1` took 31 s, 42 s, 44 s, 36 s, 17 s, 23 s.
+Comparison calls with `compare-v1` took 31 s, 42 s, 44 s, 36 s, 17 s, 68 s, 41 s, 23 s.
+Comparison calls with `compare-v2` took 57 s, 47 s, 52 s, 41 s, 55 s, 51 s, 34 s, 51 s.

@@ -36,7 +36,8 @@ export type CheckReason =
   | "outside_text" // extraction marked it as not checkable from a draft
   | "model_cannot_tell"
   | "evidence_discarded" // the model's evidence quote failed Quote Lock
-  | "no_verdict"; // the model returned nothing for this id
+  | "no_verdict" // the model returned nothing for this id
+  | "rule_not_mentioned"; // a conduct rule the draft does not mention: silence is not a breach
 
 /** Set when code, not the model, decided a word-limit requirement. */
 export type Counted = {

@@ -42,6 +42,7 @@ const CHECK_REASON: Record<CheckReason, string> = {
   model_cannot_tell: "The draft’s text can’t settle this. Confirm it yourself.",
   evidence_discarded: "The model’s quote wasn’t found in your draft, so no verdict is shown.",
   no_verdict: "The model returned no verdict for this one.",
+  rule_not_mentioned: "A rule of conduct your draft doesn’t mention. Nothing here breaks it; confirm it yourself.",
 };
 
 const clean = (s: string) => s.replace(/\r\n/g, "\n").trim();
