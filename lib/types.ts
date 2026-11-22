@@ -38,6 +38,15 @@ export type CheckReason =
   | "evidence_discarded" // the model's evidence quote failed Quote Lock
   | "no_verdict"; // the model returned nothing for this id
 
+/** Set when code, not the model, decided a word-limit requirement. */
+export type Counted = {
+  words: number;
+  min?: number;
+  max?: number;
+  // What the model said before code overrode it (null if it gave no verdict).
+  modelVerdict: ModelVerdict | null;
+};
+
 export type CompareResult = {
   id: string;
   verdict: Verdict;
@@ -46,6 +55,7 @@ export type CompareResult = {
   evEnd: number | null;
   note: string;
   checkReason?: CheckReason;
+  counted?: Counted;
 };
 
 export type RunMeta = {

@@ -270,7 +270,8 @@ export default function Page() {
                 </div>
                 <div className="shows">
                   <span className={`chip ${res.verdict}`}>
-                    <span aria-hidden="true">{VERDICT_GLYPH[res.verdict]}</span> {VERDICT_LABEL[res.verdict]}
+                    <span aria-hidden="true">{VERDICT_GLYPH[res.verdict]}</span>{" "}
+                    {res.counted && res.verdict === "missing" ? "Not met" : VERDICT_LABEL[res.verdict]}
                   </span>
                   {res.verdict === "check" ? (
                     <>

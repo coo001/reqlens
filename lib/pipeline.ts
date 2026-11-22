@@ -7,10 +7,12 @@ import {
   comparePrompt,
   extractPrompt,
 } from "./prompts.ts";
+import { countWords, limitText, parseWordLimit, withinLimit } from "./counted.ts";
 import { locateQuote } from "./quoteLock.ts";
 import {
   CHECKABLE,
   LEVELS,
+  MODEL_VERDICTS,
   TYPES,
   type CompareResponse,
   type CompareResult,
@@ -88,6 +90,7 @@ export async function compareDraft(
   }
 
   let discardedEvidence = 0;
+  const words = countWords(draft);
   const results: CompareResult[] = requirements.map((req) => {
     const none = { id: req.id, evidence: "", evStart: null, evEnd: null };
     if (req.checkable === "no") {
@@ -95,6 +98,17 @@ export async function compareDraft(
     }
     const r = byId.get(req.id);
     const note = typeof r?.note === "string" ? r.note.trim() : "";
+    const limit = parseWordLimit(req.quote);
+    if (limit) {
+      // Counted, not guessed: the model's verdict is recorded but not shown.
+      const ok = withinLimit(words, limit);
+      return {
+        ...none,
+        verdict: ok ? "met" : "missing",
+        note: `Counted by code: your draft has ${words.toLocaleString("en-US")} words. The notice asks for ${limitText(limit)}.`,
+        counted: { words, ...limit, modelVerdict: includes(MODEL_VERDICTS, r?.verdict) ? r.verdict : null },
+      };
+    }
     if (!r) return { ...none, verdict: "check", note: "", checkReason: "no_verdict" };
     if (r.verdict === "missing") return { ...none, verdict: "missing", note };
     if (r.verdict === "met" || r.verdict === "partial") {
