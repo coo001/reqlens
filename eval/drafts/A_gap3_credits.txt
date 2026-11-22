@@ -1,0 +1,13 @@
+RotaMate — fair chore rotas from a messy group chat
+
+RotaMate is a small web app for shared houses. You paste the chore part of your house group chat, and RotaMate returns a weekly rota that names who does each task, on which day, and why the split is fair. Each housemate can then copy their own list.
+
+The problem: in a shared student house, chores are usually agreed in a long group chat. Promises like "I'll take bins this week" get buried under memes, nobody remembers who swapped with whom, and the same two people end up cleaning the kitchen. When we asked our own house of five to recall last week's agreements, nobody could list them all. A spreadsheet rota exists, but someone has to read the whole chat and update it by hand, so it is always out of date.
+
+How the AI works: RotaMate sends the pasted chat to the Gemini API in two steps. The first call extracts every chore commitment, swap, and excuse as structured JSON (person, task, day, source message). The second call proposes a rota from that list. Our own code then checks the proposal: every task must appear exactly once per week, nobody may get more than two extra tasks, and every assignment must point back to a real message in the chat. If a check fails, the app shows the problem instead of a rota.
+
+Demo: the demonstration video walks through one real-looking chat from paste to finished rota in under three minutes: https://youtu.be/rotamate-demo (unlisted, no login needed).
+
+Source code and setup: the code is public at https://github.com/example/rotamate. The README explains how to run it locally with Node 20 and where to place your own free Gemini API key in a local environment file that is never committed.
+
+AI tools we used while building: we used an AI coding assistant to draft the first version of the JSON checking code and the CSS layout. We wrote the prompts, the fairness rules, and the source-message check ourselves, and we tested the assistant's checking code against ten chats where we knew the correct answer; it missed swaps that happened across two messages, so we rewrote that part by hand.

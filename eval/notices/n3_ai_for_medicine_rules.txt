@@ -1,0 +1,29 @@
+Dates
+The event and judging are online. All dates and times are Eastern.
+- Submissions open: Monday, November 9, 2026, 12:00 AM ET.
+- Submissions close: Friday, December 4, 2026, 11:45 PM ET.
+- Judging: December 5 to 11, 2026.
+- Winners announced: Saturday, December 12, 2026, 9:00 AM ET.
+Eligibility
+You must be 14 or older and currently enrolled at an accredited institution. Students at any level and in any field are eligible.
+You may enter alone or in a team of up to four. Each team may submit one entry.
+Organizers and judges are eligible to enter.
+Project and Submission Requirements
+New, in-progress, and previously published projects are allowed if the repository is public and the project runs today.
+- Submit a public repository URL with a README and instructions for running the project.
+- Submit a video of at least 60 seconds showing the project working end to end.
+- Include a written description covering the problem and who has it, the method, an Evaluation section stating the metric and measurement method, a “Who benefits, and who could be harmed” section, limitations, and what you would do with another month.
+- Provide full attribution for any model, dataset, or code you did not write.
+Missing an Evaluation section does not disqualify your entry, but it caps Technical Depth and Rigor & Reproducibility at half marks each.
+AI tools
+AI assistants and code generators are allowed and expected. Disclose which tools you used and what they did. One line in the README is enough.
+Undisclosed generation, or a submission whose author cannot explain the method, scores poorly on Technical Depth. Judges may ask what a given function does.
+Judging and award selection
+The organizer panel scores entries against the four published criteria at equal weight, 25% each. Ties break toward the stronger held-out evaluation.
+The organizer panel selects all six award winners. Grand Prize goes to the highest combined score across the four published criteria. The five category awards recognize the strengths described in their prize descriptions. Public voting is inactive and does not determine any award.
+Judges do not score work they contributed to. The organizer's own entry is scored by the other judges.
+Prizes are certificates only. Every finalist gets a participation certificate. Winners get a track certificate. All are signed PDFs, citable on a resume, with cash value $0.
+Data and privacy
+Use public datasets or your own recordings. Follow applicable dataset access and use terms. Do not include video of identifiable people without their consent.
+Intellectual property
+You keep your work. By submitting, you grant permission to link your repository and show your video on the results page. Open licenses are encouraged, not required.

@@ -8,3 +8,7 @@
 {"date":"2026-11-21","at":"2026-11-21T11:29:29.689Z","stage":"extract","model":"gemini-flash-lite-latest","runId":"extract__extract-v1__gemini-flash-lite-latest__e056488a2e9bdf5f","status":503,"durationMs":9837}
 {"date":"2026-11-21","at":"2026-11-21T11:31:08.482Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
 {"date":"2026-11-21","at":"2026-11-21T11:32:07.413Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":503,"durationMs":5636}
+{"date":"2026-11-22","at":"2026-11-22T01:03:34.914Z","stage":"extract","model":"gemini-flash-latest","runId":"extract__extract-v1__gemini-flash-latest__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-22","at":"2026-11-22T01:04:00Z","stage":"probe","model":"gemini-3.5-flash-lite","runId":"manual-minimal-probe","status":"200 ttfb=0.663526s total=0.665899s"}
+{"date":"2026-11-22","at":"2026-11-22T01:04:33.998Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":200,"durationMs":24241}
+{"date":"2026-11-22","at":"2026-11-22T01:05:17.791Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__da06aa991e69a5a6","status":200,"durationMs":43722}

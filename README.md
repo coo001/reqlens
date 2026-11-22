@@ -43,7 +43,7 @@ npm run build
 | Variable | Default | Effect |
 |---|---|---|
 | `GEMINI_API_KEY` | none | Server-side key. Never sent to the browser, never committed |
-| `GEMINI_MODEL` | `gemini-flash-latest` | Model name. The exact version the API reports is saved with every run |
+| `GEMINI_MODEL` | `gemini-3.5-flash` | Model name. The exact version the API reports is saved with every run |
 | `REPLAY` | `0` | `1` = never call the model. Answer only from `runs/`; a missing recording is an error, not a silent live call |
 | `RECORD` | `1` | Save each live request and raw response to `runs/` |
 | `DAILY_CALL_CAP` | `13` | Live calls allowed per day (KST). Failed calls count |

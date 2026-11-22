@@ -1,0 +1,29 @@
+Hackathon Rules
+1. Eligibility
+Participation is free and open to eligible students who meet the eligibility requirements published on this hackathon page and Devpost. All participants must comply with applicable age, geographic, and platform requirements.
+2. Team Participation
+Participants may work individually or in teams, subject to the team requirements configured for the event. Every team member must meet the eligibility requirements.
+3. Originality and Attribution
+Projects should demonstrate the participant's own work. Existing libraries, open-source projects, APIs, pretrained models, and AI coding assistants may be used, provided they are appropriately credited and their use is disclosed.
+Submitting another person's project as your own is not permitted.
+4. AI Tools
+Participants may use AI tools, coding assistants, and open-source models. They must explain which tools they used and identify their own contributions.
+5. Costs
+There is no entry fee. No paid software, paid API subscription, or purchase is required. Participants are encouraged to use free resources.
+6. Submission Requirements
+Each project must include a clear description, an explanation of the problem it addresses, details of its AI implementation, and a demonstration. Source code and setup instructions should be provided where applicable.
+All submissions must be received by the deadline shown on the official hackathon page.
+7. Judging
+Projects will be evaluated according to the published criteria:
+- Creativity and originality: 25%
+- Implementation and functionality: 30%
+- Usefulness and real-world impact: 25%
+- Presentation and documentation: 20%
+Judging decisions will be based on the submitted projects and the published criteria.
+8. Safety and Privacy
+Do not submit malicious software, illegal content, stolen intellectual property, or applications designed to harm others. Protect personal information and never publish API keys, passwords, or confidential data.
+9. Prizes and Recognition
+This is a no-cash-prize hackathon. Any recognition, awards, or certificates will be provided only if explicitly announced by the organizer.
+10. Organizer Updates
+The organizer may communicate important event information through the official Devpost page. Participants are responsible for reviewing the published deadlines, requirements, and updates.
+By participating, you agree to follow these rules and Devpost's applicable terms and policies.

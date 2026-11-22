@@ -11,7 +11,7 @@ const CALL_LOG = path.join(RUNS_DIR, "call-log.jsonl");
 const ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models";
 const TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS ?? 60_000);
 
-export const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
+export const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
 
 export class PipelineError extends Error {
   code: string;
