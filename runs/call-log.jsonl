@@ -12,3 +12,12 @@
 {"date":"2026-11-22","at":"2026-11-22T01:04:00Z","stage":"probe","model":"gemini-3.5-flash-lite","runId":"manual-minimal-probe","status":"200 ttfb=0.663526s total=0.665899s"}
 {"date":"2026-11-22","at":"2026-11-22T01:04:33.998Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":200,"durationMs":24241}
 {"date":"2026-11-22","at":"2026-11-22T01:05:17.791Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__da06aa991e69a5a6","status":200,"durationMs":43722}
+{"date":"2026-11-22","at":"2026-11-22T01:06:55.385Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__1e4a5e9621a38e3d","status":200,"durationMs":31610}
+{"date":"2026-11-22","at":"2026-11-22T01:07:23.719Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__83aa723cfdc3566d","status":200,"durationMs":13217}
+{"date":"2026-11-22","at":"2026-11-22T01:07:54.064Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__039161042431a01e","status":200,"durationMs":15219}
+{"date":"2026-11-22","at":"2026-11-22T01:08:35.642Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__350d0aebe73e2404","status":200,"durationMs":26457}
+{"date":"2026-11-22","at":"2026-11-22T01:09:39.259Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__78bbeb1427c3c8f4","status":200,"durationMs":30939}
+{"date":"2026-11-22","at":"2026-11-22T01:10:36.548Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__3136345504c248f9","status":200,"durationMs":42131}
+{"date":"2026-11-22","at":"2026-11-22T01:11:27.400Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__882b0d8865e90e92","status":200,"durationMs":35695}
+{"date":"2026-11-22","at":"2026-11-22T01:11:59.478Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__479358febc79ff7f","status":200,"durationMs":16959}
+{"date":"2026-11-22","at":"2026-11-22T01:12:37.929Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v1__gemini-3.5-flash__ebae293087173a07","status":200,"durationMs":23330}
