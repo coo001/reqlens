@@ -1,0 +1,1823 @@
+[
+ {
+  "id": "S1-01",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Participation is free and open to students aged 13 and older",
+  "occurrence": 0,
+  "line": "a2",
+  "alsoStatedAt": [
+   {
+    "quote": "meet Devpost’s eligibility requirements",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-02",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "partial",
+  "quote": "Participants may enter individually or in teams of up to six people total, including the submitter.",
+  "occurrence": 0,
+  "line": "a3",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-03",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Every team member must meet the eligibility requirements",
+  "occurrence": 0,
+  "line": "a3",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-04",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Participation is international subject to Devpost’s standard global eligibility exceptions.",
+  "occurrence": 0,
+  "line": "a4",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-05",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Participants must also satisfy Devpost’s applicable account and consent requirements.",
+  "occurrence": 0,
+  "line": "a4",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-06",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deadline",
+  "checkable": "no",
+  "quote": "Submissions are due November 28, 2026, at 3:00 p.m. PST.",
+  "occurrence": 0,
+  "line": "a5",
+  "alsoStatedAt": [
+   {
+    "quote": "The time zone is America/Los_Angeles.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-07",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Teams must disclose any existing work and clearly identify the additions or improvements completed during the hackathon.",
+  "occurrence": 0,
+  "line": "a6",
+  "alsoStatedAt": [
+   {
+    "quote": "a development disclosure",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-08",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Teams must accurately disclose the use of AI and distinguish their contributions from pre-existing tools, services, and other work.",
+  "occurrence": 0,
+  "line": "a7",
+  "alsoStatedAt": [
+   {
+    "quote": "an AI disclosure",
+    "occurrence": 0
+   },
+   {
+    "quote": "AI disclosures",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-09",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "yes",
+  "quote": "a project description",
+  "occurrence": 0,
+  "line": "a8",
+  "alsoStatedAt": [
+   {
+    "quote": "Each submission must include",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-10",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "length_format",
+  "checkable": "partial",
+  "quote": "a 2–4 minute demonstration video",
+  "occurrence": 0,
+  "line": "a8",
+  "alsoStatedAt": [
+   {
+    "quote": "Prepare a 2–4 minute demonstration showing the actual project in use.",
+    "occurrence": 0
+   },
+   {
+    "quote": "Use the required 2–4 minute video to show the actual project and its main task.",
+    "occurrence": 0
+   },
+   {
+    "quote": "the required demo",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-11",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "public GitHub access to all project code",
+  "occurrence": 0,
+  "line": "a8",
+  "alsoStatedAt": [
+   {
+    "quote": "a public GitHub repository",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-12",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "the complete team roster",
+  "occurrence": 0,
+  "line": "a8",
+  "alsoStatedAt": [
+   {
+    "quote": "be listed on the submission’s public Devpost team roster",
+    "occurrence": 0
+   },
+   {
+    "quote": "that every teammate is listed",
+    "occurrence": 0
+   },
+   {
+    "quote": "a complete team roster",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-13",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "Each participant must submit their award or certificate name and contact email privately through the Participant Contact & Sponsor Opt-In form.",
+  "occurrence": 0,
+  "line": "a9",
+  "alsoStatedAt": [
+   {
+    "quote": "Each team member fills out their own form.",
+    "occurrence": 0
+   },
+   {
+    "quote": "Each participant must also complete the Participant Contact & Sponsor Opt-In form",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-14",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Submissions must accurately represent the project’s behavior.",
+  "occurrence": 0,
+  "line": "a10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-15",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Clearly disclose simulated, mocked, or unfinished features.",
+  "occurrence": 0,
+  "line": "a10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-16",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "partial",
+  "quote": "Credit third-party work and comply with relevant licenses and Devpost’s terms.",
+  "occurrence": 0,
+  "line": "a10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-17",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "Setup instructions",
+  "occurrence": 0,
+  "line": "b30",
+  "alsoStatedAt": [
+   {
+    "quote": "provide instructions that help another person understand and run the project",
+    "occurrence": 0
+   },
+   {
+    "quote": "remain submission requirements",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-18",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Start with a clear user and a manageable goal.",
+  "occurrence": 0,
+  "line": "b4",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-19",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "If you are improving an existing project, document the starting point before making changes.",
+  "occurrence": 0,
+  "line": "b5",
+  "alsoStatedAt": [
+   {
+    "quote": "Keep a concise record of the features, fixes, and other improvements completed during the event.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-20",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "partial",
+  "quote": "Identify dependencies and external service requirements.",
+  "occurrence": 0,
+  "line": "b6",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-21",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Document AI integrated into the product separately from AI used during development.",
+  "occurrence": 0,
+  "line": "b7",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-22",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Explain what each tool or model contributed and how your team reviewed its work.",
+  "occurrence": 0,
+  "line": "b7",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-23",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Document relevant problems, the project’s response, and known limitations.",
+  "occurrence": 0,
+  "line": "b8",
+  "alsoStatedAt": [
+   {
+    "quote": "Check the main task using examples the project should handle.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-24",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "check that your video and repository links work",
+  "occurrence": 0,
+  "line": "b9",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-25",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "AI integration is encouraged but is not mandatory.",
+  "occurrence": 0,
+  "line": "a7",
+  "alsoStatedAt": [
+   {
+    "quote": "AI is encouraged, not mandatory.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-26",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Use the demo for the actual project and the description for detailed explanations, comparisons, and test summaries.",
+  "occurrence": 0,
+  "line": "b11",
+  "alsoStatedAt": [
+   {
+    "quote": "Put detailed comparisons, AI decisions, evaluation evidence, test summaries, and design explanations in the description.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-52",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "recommended",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "Keep your GitHub repository organized",
+  "occurrence": 0,
+  "line": "b6",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-27",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Credible evidence supports a specific need or desired experience for the intended users.",
+  "occurrence": 0,
+  "line": "b36",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-28",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "A realistic use example shows how the project’s main capability addresses the stated user need.",
+  "occurrence": 0,
+  "line": "b37",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-29",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The comparison uses a reasonable existing tool, manual method, or current lack of a solution for the same user goal.",
+  "occurrence": 0,
+  "line": "b40",
+  "alsoStatedAt": [
+   {
+    "quote": "The team makes clear where the comparison facts came from.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-30",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The comparison evidence supports a specific benefit for the user.",
+  "occurrence": 0,
+  "line": "b41",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-31",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The proposed use is workable for the intended users with the equipment, information, permissions, and operating resources the project needs.",
+  "occurrence": 0,
+  "line": "b44",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-32",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The team explains why the particular AI model, tool, or method is a good choice for the project’s job",
+  "occurrence": 0,
+  "line": "b48",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-33",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Credible comparison information or test evidence supports the stated reason for the AI choice.",
+  "occurrence": 0,
+  "line": "b49",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-34",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "The submitted project includes an implemented AI design choice addressing a particular project problem.",
+  "occurrence": 0,
+  "line": "b52",
+  "alsoStatedAt": [
+   {
+    "quote": "actually part of the project",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-35",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Evidence demonstrates how the identified AI design choice helps meet the project’s goal.",
+  "occurrence": 0,
+  "line": "b53",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-36",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The team shows a relevant check of the project’s AI work against a clear reference or requirement.",
+  "occurrence": 0,
+  "line": "b56",
+  "alsoStatedAt": [
+   {
+    "quote": "The submission includes the actual results and explains the checking method.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-37",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The team uses evaluation findings or relevant documented limitations to explain when the project’s AI results can and cannot be relied on.",
+  "occurrence": 0,
+  "line": "b57",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-38",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The team provides evidence of a person checking a specific AI contribution made during development.",
+  "occurrence": 0,
+  "line": "b60",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-39",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "The team shows what the human check found and explains a resulting decision to keep, change, or reject the AI-created work.",
+  "occurrence": 0,
+  "line": "b61",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-40",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "The actual submitted project carries out the complete main process from its starting action to its final output.",
+  "occurrence": 0,
+  "line": "b65",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-41",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A first ordinary example produces a result meeting the project’s stated requirements.",
+  "occurrence": 0,
+  "line": "b68",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-42",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A second ordinary example, using different information or a different situation, produces a result meeting the stated requirements.",
+  "occurrence": 0,
+  "line": "b69",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-43",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "Repeating an ordinary example, or repeating a suitable check of its result, produces another result meeting the same requirements.",
+  "occurrence": 0,
+  "line": "b70",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-44",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A more demanding example within the project’s claimed capabilities produces a result meeting the stated requirements.",
+  "occurrence": 0,
+  "line": "b71",
+  "alsoStatedAt": [
+   {
+    "quote": "For every case, make clear what should happen and show what actually happened.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-45",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A first demonstrated failure or unsupported situation is detected and handled",
+  "occurrence": 0,
+  "line": "b74",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-46",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A second demonstrated failure with a different cause receives appropriate detection and handling under the same requirement",
+  "occurrence": 0,
+  "line": "b75",
+  "alsoStatedAt": [
+   {
+    "quote": "Unreadable data and an unavailable service are different causes",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S1-47",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "The main actions and most important information clearly stand out throughout the main experience.",
+  "occurrence": 0,
+  "line": "b79",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-48",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "Repeated parts follow a coordinated design throughout the demonstrated experience.",
+  "occurrence": 0,
+  "line": "b82",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-49",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "A demonstrated design choice removes a specific user burden",
+  "occurrence": 0,
+  "line": "b85",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-50",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "Content is grouped, labeled, or ordered so users can find the information needed for their task.",
+  "occurrence": 0,
+  "line": "b88",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S1-51",
+  "notice": "n1_gaibc_rules_and_resources",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "The presentation makes a useful relationship directly visible",
+  "occurrence": 0,
+  "line": "b89",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-01",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "All participants must comply with applicable age",
+  "occurrence": 0,
+  "line": "3",
+  "alsoStatedAt": [
+   {
+    "quote": "meet the eligibility requirements published on this hackathon page and Devpost",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S2-02",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "geographic",
+  "occurrence": 0,
+  "line": "3",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-03",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "platform requirements",
+  "occurrence": 0,
+  "line": "3",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-04",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Every team member must meet the eligibility requirements.",
+  "occurrence": 0,
+  "line": "5",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-05",
+  "notice": "n2_first_ai_app_rules",
+  "level": "recommended",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Projects should demonstrate the participant's own work.",
+  "occurrence": 0,
+  "line": "7",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-06",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "appropriately credited",
+  "occurrence": 0,
+  "line": "7",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-07",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "their use is disclosed",
+  "occurrence": 0,
+  "line": "7",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-08",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Submitting another person's project as your own is not permitted.",
+  "occurrence": 0,
+  "line": "8",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-09",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "explain which tools they used",
+  "occurrence": 0,
+  "line": "10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-10",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "identify their own contributions",
+  "occurrence": 0,
+  "line": "10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-11",
+  "notice": "n2_first_ai_app_rules",
+  "level": "recommended",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Participants are encouraged to use free resources.",
+  "occurrence": 0,
+  "line": "12",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-12",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "a clear description",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": [
+   {
+    "quote": "Each project must include",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S2-13",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "an explanation of the problem it addresses",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-14",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "details of its AI implementation",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-15",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "a demonstration",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-16",
+  "notice": "n2_first_ai_app_rules",
+  "level": "recommended",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "Source code",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": [
+   {
+    "quote": "should be provided where applicable",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S2-17",
+  "notice": "n2_first_ai_app_rules",
+  "level": "recommended",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "setup instructions",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-18",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "deadline",
+  "checkable": "no",
+  "quote": "All submissions must be received by the deadline shown on the official hackathon page.",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-19",
+  "notice": "n2_first_ai_app_rules",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Creativity and originality: 25%",
+  "occurrence": 0,
+  "line": "18",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-20",
+  "notice": "n2_first_ai_app_rules",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "partial",
+  "quote": "Implementation and functionality: 30%",
+  "occurrence": 0,
+  "line": "19",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-21",
+  "notice": "n2_first_ai_app_rules",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Usefulness and real-world impact: 25%",
+  "occurrence": 0,
+  "line": "20",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-22",
+  "notice": "n2_first_ai_app_rules",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Presentation and documentation: 20%",
+  "occurrence": 0,
+  "line": "21",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-23",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Do not submit malicious software",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-24",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "illegal content",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-25",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "stolen intellectual property",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-26",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "applications designed to harm others",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-27",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "partial",
+  "quote": "Protect personal information",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-28",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "partial",
+  "quote": "never publish API keys",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-29",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "partial",
+  "quote": "passwords",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S2-30",
+  "notice": "n2_first_ai_app_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "partial",
+  "quote": "confidential data",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-01",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "deadline",
+  "checkable": "no",
+  "quote": "Submissions close: Friday, December 4, 2026, 11:45 PM ET.",
+  "occurrence": 0,
+  "line": "4",
+  "alsoStatedAt": [
+   {
+    "quote": "All dates and times are Eastern.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-02",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "You must be 14 or older",
+  "occurrence": 0,
+  "line": "8",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-03",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "currently enrolled at an accredited institution",
+  "occurrence": 0,
+  "line": "8",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-04",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "partial",
+  "quote": "You may enter alone or in a team of up to four.",
+  "occurrence": 0,
+  "line": "9",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-05",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Each team may submit one entry.",
+  "occurrence": 0,
+  "line": "9",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-06",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "the project runs today",
+  "occurrence": 0,
+  "line": "12",
+  "alsoStatedAt": [
+   {
+    "quote": "if the repository is public",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-07",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "Submit a public repository URL",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-08",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "a README",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-09",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "partial",
+  "quote": "instructions for running the project",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-10",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "length_format",
+  "checkable": "partial",
+  "quote": "Submit a video of at least 60 seconds showing the project working end to end.",
+  "occurrence": 0,
+  "line": "14",
+  "alsoStatedAt": [
+   {
+    "quote": "showing the project working end to end",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-11",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "the problem and who has it",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": [
+   {
+    "quote": "Include a written description covering",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-12",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "the method",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-13",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "an Evaluation section stating the metric and measurement method",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": [
+   {
+    "quote": "Missing an Evaluation section does not disqualify your entry, but it caps Technical Depth and Rigor & Reproducibility at half marks each.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-14",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "a “Who benefits, and who could be harmed” section",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-15",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "limitations",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-16",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "what you would do with another month",
+  "occurrence": 0,
+  "line": "15",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-17",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "full attribution for any model",
+  "occurrence": 0,
+  "line": "16",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-18",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "dataset",
+  "occurrence": 0,
+  "line": "16",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-19",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "code you did not write",
+  "occurrence": 0,
+  "line": "16",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-20",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "Disclose which tools you used",
+  "occurrence": 0,
+  "line": "19",
+  "alsoStatedAt": [
+   {
+    "quote": "One line in the README is enough.",
+    "occurrence": 0
+   },
+   {
+    "quote": "Undisclosed generation",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-21",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "disclosure",
+  "checkable": "yes",
+  "quote": "what they did",
+  "occurrence": 0,
+  "line": "19",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-22",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "no",
+  "quote": "a submission whose author cannot explain the method",
+  "occurrence": 0,
+  "line": "20",
+  "alsoStatedAt": [
+   {
+    "quote": "Judges may ask what a given function does.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S3-23",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "partial",
+  "quote": "Use public datasets or your own recordings.",
+  "occurrence": 0,
+  "line": "27",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-24",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Follow applicable dataset access and use terms.",
+  "occurrence": 0,
+  "line": "27",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-25",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Do not include video of identifiable people without their consent.",
+  "occurrence": 0,
+  "line": "27",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S3-26",
+  "notice": "n3_ai_for_medicine_rules",
+  "level": "recommended",
+  "type": "disclosure",
+  "checkable": "partial",
+  "quote": "Open licenses are encouraged, not required.",
+  "occurrence": 0,
+  "line": "29",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-01",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "You are a U.S. citizen.",
+  "occurrence": 0,
+  "line": "4",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-02",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "partial",
+  "quote": "You have a demonstrated record of community or volunteer service.",
+  "occurrence": 0,
+  "line": "5",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-03",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "You are enrolled in an undergraduate program at an accredited U.S. college or university for the Spring 2027 semester.",
+  "occurrence": 0,
+  "line": "6",
+  "alsoStatedAt": [
+   {
+    "quote": "High school graduates may apply if you are enrolled in college for the semester immediately following the application deadline (Spring 2027).",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S5-04",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Applicants need to be enrolled in at least 12 hours of college courses at the time the scholarship awards are issued.",
+  "occurrence": 0,
+  "line": "8",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-05",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "length_format",
+  "checkable": "yes",
+  "quote": "Please write an essay of 500 words or less (submissions of over 500 words will not be considered)",
+  "occurrence": 0,
+  "line": "10",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-06",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Describe a challenge or trying time in your life through which you persevered",
+  "occurrence": 0,
+  "line": "11",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-07",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "how the experience helped shape your future",
+  "occurrence": 0,
+  "line": "11",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-08",
+  "notice": "n4_burress_scholarship",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "we would love to hear about your relationship with your Grandparent in your response",
+  "occurrence": 0,
+  "line": "12",
+  "alsoStatedAt": [
+   {
+    "quote": "If you are so fortunate to have a Grandparent who is or was important in your life",
+    "occurrence": 0
+   },
+   {
+    "quote": "including meaningful ways they have helped you and you have helped them",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S5-09",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "please submit your contact information",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-10",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "a professional photograph of yourself",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-11",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "proof of your college enrollment",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-12",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "deliverable",
+  "checkable": "no",
+  "quote": "All materials should be submitted using the form below.",
+  "occurrence": 0,
+  "line": "13",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-13",
+  "notice": "n4_burress_scholarship",
+  "level": "required",
+  "type": "deadline",
+  "checkable": "no",
+  "quote": "12/09/2026",
+  "occurrence": 0,
+  "line": "24",
+  "alsoStatedAt": [
+   {
+    "quote": "Deadline",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S5-14",
+  "notice": "n4_burress_scholarship",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Demonstrated passion for standing up to adversity in your life and career",
+  "occurrence": 0,
+  "line": "16",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-15",
+  "notice": "n4_burress_scholarship",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Originality and thoughtfulness of your essay response",
+  "occurrence": 0,
+  "line": "17",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S5-16",
+  "notice": "n4_burress_scholarship",
+  "level": "scoring",
+  "type": "scoring",
+  "checkable": "yes",
+  "quote": "Organization, clarity, and correctness of your writing",
+  "occurrence": 0,
+  "line": "18",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-01",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "deadline",
+  "checkable": "no",
+  "quote": "Submission Deadline: March 12, 2027 by 11:59PM ET",
+  "occurrence": 0,
+  "line": "25",
+  "alsoStatedAt": [
+   {
+    "quote": "Submit by 11:59PM ET on March 12, 2027",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-02",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "High School Division: Grades 9-12",
+  "occurrence": 0,
+  "line": "21",
+  "alsoStatedAt": [
+   {
+    "quote": "Middle School Division: Grades 5-8",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-03",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Residency: U.S., Canada, or U.S. military address",
+  "occurrence": 0,
+  "line": "22",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-04",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "eligibility",
+  "checkable": "no",
+  "quote": "Students who enter the 2026-27 AI Challenge are not eligible to enter the current 2026-27 Essay Contest.",
+  "occurrence": 0,
+  "line": "23",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-05",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "length_format",
+  "checkable": "yes",
+  "quote": "Length: 500-1,000 words",
+  "occurrence": 0,
+  "line": "43",
+  "alsoStatedAt": [
+   {
+    "quote": "Stay within the 500-1,000 word limit.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-06",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Topic: Must address one of the four prompts.",
+  "occurrence": 0,
+  "line": "44",
+  "alsoStatedAt": [
+   {
+    "quote": "Choose one of this year’s prompts and build your case.",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-07",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Essays must be students’ own work.",
+  "occurrence": 0,
+  "line": "45",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-08",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Essays with plagiarized",
+  "occurrence": 0,
+  "line": "45",
+  "alsoStatedAt": [
+   {
+    "quote": "will be disqualified",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-09",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "AI-generated content",
+  "occurrence": 0,
+  "line": "45",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-10",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Students whose submissions reach the final phase of judging must take part in a brief remote interview",
+  "occurrence": 0,
+  "line": "46",
+  "alsoStatedAt": [
+   {
+    "quote": "during the week of May 16-22, 2027",
+    "occurrence": 0
+   }
+  ]
+ },
+ {
+  "id": "S4-11",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Choose one specific use of executive power.",
+  "occurrence": 0,
+  "line": "54",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-12",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Explore its legality and how other branches responded.",
+  "occurrence": 0,
+  "line": "54",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-13",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Then take and support a position on whether that use was an abuse of executive power.",
+  "occurrence": 0,
+  "line": "54",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-14",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Analyze how digital identification requirements and online verification affect privacy, security, and/or freedom.",
+  "occurrence": 0,
+  "line": "57",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-15",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Support your position with examples and evidence.",
+  "occurrence": 0,
+  "line": "57",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-16",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Evaluate proposed reforms to government programs or propose your own to reduce waste, fraud, and abuse.",
+  "occurrence": 0,
+  "line": "60",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-17",
+  "notice": "n5_stossel_essay_contest",
+  "level": "required",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "evaluate how the historical experiences of countries governed under socialist or communist systems support or refute the messaging of these influencers",
+  "occurrence": 0,
+  "line": "63",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-18",
+  "notice": "n5_stossel_essay_contest",
+  "level": "recommended",
+  "type": "conduct",
+  "checkable": "no",
+  "quote": "Review the complete contest rules before starting",
+  "occurrence": 0,
+  "line": "67",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-19",
+  "notice": "n5_stossel_essay_contest",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Be original and specific and make your essay stand out.",
+  "occurrence": 0,
+  "line": "68",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-20",
+  "notice": "n5_stossel_essay_contest",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Support claims with evidence and cite your sources.",
+  "occurrence": 0,
+  "line": "70",
+  "alsoStatedAt": []
+ },
+ {
+  "id": "S4-21",
+  "notice": "n5_stossel_essay_contest",
+  "level": "recommended",
+  "type": "content",
+  "checkable": "yes",
+  "quote": "Proofread for grammar, spelling, and clarity.",
+  "occurrence": 0,
+  "line": "71",
+  "alsoStatedAt": []
+ }
+]
