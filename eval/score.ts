@@ -36,7 +36,8 @@ const NOTICES = [
 ];
 // Draft -> notice, and the answer-key items whose paragraph was removed (or, for
 // the over-length draft, violated) when the draft was built by eval/make_gaps.py.
-const DRAFTS: { file: string; notice: string; gap: string[]; what: string }[] = [
+// holdout: built before compare-v3 was written and never used to tune a prompt.
+const DRAFTS: { file: string; notice: string; gap: string[]; what: string; holdout?: true }[] = [
   { file: "A_complete", notice: "n2_first_ai_app_rules", gap: [], what: "complete" },
   { file: "A_gap1_problem", notice: "n2_first_ai_app_rules", gap: ["S2-13"], what: "problem explanation removed" },
   { file: "A_gap2_ai_details", notice: "n2_first_ai_app_rules", gap: ["S2-14"], what: "AI implementation details removed" },
@@ -45,6 +46,8 @@ const DRAFTS: { file: string; notice: string; gap: string[]; what: string }[] = 
   { file: "B_gap1_future", notice: "n4_burress_scholarship", gap: ["S5-07"], what: "\"shaped your future\" part removed" },
   { file: "B_gap2_persevere", notice: "n4_burress_scholarship", gap: ["S5-06"], what: "\"persevered\" part removed" },
   { file: "B_gap3_overlength", notice: "n4_burress_scholarship", gap: ["S5-05"], what: "537 words against a 500-word limit" },
+  { file: "A_hold1_ai_tools", notice: "n2_first_ai_app_rules", gap: ["S2-09", "S2-10"], what: "AI-tools-used paragraph removed (held out)", holdout: true },
+  { file: "B_hold1_grandparent", notice: "n4_burress_scholarship", gap: ["S5-08"], what: "grandparent paragraph removed (held out)", holdout: true },
 ];
 
 async function replay<T>(fn: () => Promise<T>): Promise<T | null> {

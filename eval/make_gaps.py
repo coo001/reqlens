@@ -20,12 +20,18 @@ EXTRA_B = (
 
 GAPS = [
     # (output, source, action, paragraph index, requirement removed)
+    # The first six rows use the pre-build key ids (prep/); eval/score.ts DRAFTS has
+    # the eval/answer_key.json ids for all rows.
     ("A_gap1_problem.txt", "A_complete.txt", "delete", 2, "S2-08"),
     ("A_gap2_ai_details.txt", "A_complete.txt", "delete", 3, "S2-09"),
     ("A_gap3_credits.txt", "A_complete.txt", "delete", 6, "S2-04"),
     ("B_gap1_future.txt", "B_complete.txt", "delete", 4, "S5-07"),
     ("B_gap2_persevere.txt", "B_complete.txt", "delete", 2, "S5-06"),
     ("B_gap3_overlength.txt", "B_complete.txt", "insert", 3, "S5-05"),
+    # Held out (2026-11-22): built before compare-v3 was written and not run with any
+    # prompt until v3 is frozen. Ids here are eval/answer_key.json ids.
+    ("A_hold1_ai_tools.txt", "A_complete.txt", "delete", 7, "S2-09 S2-10"),
+    ("B_hold1_grandparent.txt", "B_complete.txt", "delete", 3, "S5-08"),
 ]
 
 
