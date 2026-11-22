@@ -281,15 +281,37 @@ export default function Page() {
           ) : (
             <>
               {res.note && <p className="note">{res.note}</p>}
-              {res.evidence && (
-                <button
-                  type="button"
-                  className={`quote ${res.verdict}`}
-                  onClick={() => jumpTo(`d-${req.id}`)}
-                  title="Show in your draft"
-                >
-                  {res.evidence}
-                </button>
+              {res.parts ? (
+                <ul className="parts">
+                  {res.parts.map((p, i) => (
+                    <li key={i}>
+                      <span className="part-name">{p.part}</span>
+                      {p.evStart !== null ? (
+                        <button
+                          type="button"
+                          className={`quote ${res.verdict}`}
+                          onClick={() => jumpTo(`d-${req.id}-${i}`)}
+                          title="Show in your draft"
+                        >
+                          {p.evidence}
+                        </button>
+                      ) : (
+                        <span className="aside">No quote in your draft.</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                res.evidence && (
+                  <button
+                    type="button"
+                    className={`quote ${res.verdict}`}
+                    onClick={() => jumpTo(`d-${req.id}`)}
+                    title="Show in your draft"
+                  >
+                    {res.evidence}
+                  </button>
+                )
               )}
               {req.checkable === "partial" && res.verdict !== "missing" && (
                 <p className="aside">The proof is outside the text. Confirm it yourself.</p>
@@ -437,9 +459,15 @@ export default function Page() {
               <span className="field-label">Your draft, as checked</span>
               <MarkedText
                 text={checked.draft}
-                spans={checked.compare.results
-                  .filter((r) => r.evStart !== null && r.evEnd !== null)
-                  .map((r) => ({ id: `d-${r.id}`, start: r.evStart!, end: r.evEnd!, tone: r.verdict }))}
+                spans={checked.compare.results.flatMap((r) =>
+                  r.parts
+                    ? r.parts.flatMap((p, i) =>
+                        p.evStart !== null ? [{ id: `d-${r.id}-${i}`, start: p.evStart, end: p.evEnd!, tone: r.verdict }] : [],
+                      )
+                    : r.evStart !== null && r.evEnd !== null
+                      ? [{ id: `d-${r.id}`, start: r.evStart, end: r.evEnd, tone: r.verdict }]
+                      : [],
+                )}
               />
             </div>
           </div>

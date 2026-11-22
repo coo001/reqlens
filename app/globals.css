@@ -331,6 +331,23 @@ button:disabled {
 .quote.partial {
   border-left-color: var(--partial);
 }
+.parts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.part-name {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.parts .aside {
+  display: block;
+  margin-top: 0;
+  padding-left: 14px;
+}
 .note {
   margin: 8px 0;
   text-wrap: pretty;

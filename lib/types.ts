@@ -48,6 +48,14 @@ export type Counted = {
   modelVerdict: ModelVerdict | null;
 };
 
+/** compare-v3: one quote per part of the requirement. evStart is null when no quote is locked. */
+export type PartQuote = {
+  part: string;
+  evidence: string;
+  evStart: number | null;
+  evEnd: number | null;
+};
+
 export type CompareResult = {
   id: string;
   verdict: Verdict;
@@ -57,6 +65,8 @@ export type CompareResult = {
   note: string;
   checkReason?: CheckReason;
   counted?: Counted;
+  // compare-v3 only. evidence/evStart/evEnd then hold the first locked quote.
+  parts?: PartQuote[];
 };
 
 export type RunMeta = {

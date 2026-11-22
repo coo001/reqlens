@@ -7,12 +7,13 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { DEFAULT_MODEL, generateJson, PipelineError } from "../lib/gemini.ts";
 import { compareDraft, extractRequirements } from "../lib/pipeline.ts";
 import {
-  COMPARE_SCHEMA,
   COMPARE_VERSIONS,
   EXTRACT_SCHEMA,
   EXTRACT_VERSION,
   comparePrompt,
+  compareSchema,
   extractPrompt,
+  isPartsVersion,
   type CompareVersion,
 } from "../lib/prompts.ts";
 import { countWords, parseWordLimit, withinLimit } from "../lib/counted.ts";
@@ -121,13 +122,21 @@ const draftRows: DraftRow[] = [];
 const flags = (v: (string | null | undefined)[]) => v.map((x) => x ?? "no verdict").join(", ");
 const isFlag = (v: string | null | undefined) => v === "missing" || v === "partial";
 
+// The quotes a raw model result gave: one (v1, v2) or one per part (v3).
+const rawQuotes = (r: any): string[] =>
+  (Array.isArray(r?.parts) ? r.parts.map((p: any) => p?.evidence) : [r?.evidence]).filter(
+    (e: unknown): e is string => typeof e === "string" && e.trim() !== "",
+  );
+
 for (const v of versions) for (const d of DRAFTS) {
+  // Held-out drafts are only ever run with v3 and later.
+  if (d.holdout && !isPartsVersion(v)) continue;
   const row = rows.find((r) => r.name === d.notice);
   if (!row) continue;
   const draft = read(`./drafts/${d.file}.txt`);
   const judged = row.reqs.filter((r) => r.checkable !== "no");
   const raw = await replay(() =>
-    generateJson({ stage: "compare", promptVersion: v, prompt: comparePrompt(judged, draft, v), schema: COMPARE_SCHEMA, forceReplay: true }),
+    generateJson({ stage: "compare", promptVersion: v, prompt: comparePrompt(judged, draft, v), schema: compareSchema(v), forceReplay: true }),
   );
   if (!raw) {
     notRun.push(`${v} comparison of ${d.file}`);
@@ -151,9 +160,9 @@ for (const v of versions) for (const d of DRAFTS) {
     results: final.results,
     reqs: row.reqs,
     rawByReq,
-    unverifiableEvidence: [...rawByReq.values()].filter(
-      (r) => (r.verdict === "met" || r.verdict === "partial") && !(typeof r.evidence === "string" && locateQuote(draft, r.evidence)),
-    ).length,
+    unverifiableEvidence: [...rawByReq.values()]
+      .filter((r) => r.verdict === "met" || r.verdict === "partial")
+      .reduce((n, r) => n + (rawQuotes(r).length ? rawQuotes(r).filter((e) => !locateQuote(draft, e)).length : 1), 0),
     gapS0: linked.length ? linked.map((r, i) => `${r.id} ${s0[i] ?? "no verdict"}`).join(", ") : d.gap.length ? "requirement not extracted" : "–",
     gapS2: linked.length ? linked.map((r, i) => `${r.id} ${s2[i] ?? "no verdict"}`).join(", ") : d.gap.length ? "requirement not extracted" : "–",
     detectedS0: d.gap.length ? s0.some(isFlag) : null,
@@ -179,7 +188,8 @@ out.push(
   "How to read this:",
   "- A tool item and an answer-key item count as the same requirement when their quotes overlap in the notice text (the key's main quote or any place the key lists the requirement as restated).",
   "- The answer key (145 items over 5 notices) was written before the build period by two AI models from different companies and reconciled. **No human verified the answer key.**",
-  "- The sample is small: 5 notices, 8 drafts, 6 planted gaps. One run per input at temperature 0.",
+  "- The sample is small: 5 notices, 10 drafts, 8 planted gaps. One run per input at temperature 0.",
+  "- Prompts were adjusted on the first 8 drafts (6 gaps). The 2 held-out gap drafts were built before `compare-v3` was written and are run only with v3, so they are the only results here from drafts no prompt was tuned on.",
   "",
 );
 if (notRun.length) out.push(`**Not run yet (no saved response):** ${notRun.join("; ")}.`, "");
@@ -216,7 +226,14 @@ out.push(
     gapRows.filter((r) => r.d === d).map((r) => `| ${d.file} | ${d.what} | ${d.gap.join(", ")} | ${r.v} | ${r.gapS0} | ${r.gapS2} | ${yn(r.detectedS0)} | ${yn(r.detectedS2)} |`),
   ),
   "",
-  ...byVersion((v, g) => `Detected with \`${v}\`: **${g.filter((r) => r.detectedS2).length} of ${g.length} run** (6 planted in total); by the model alone, before the code steps: ${g.filter((r) => r.detectedS0).length} of ${g.length}.`, gapRows),
+  ...byVersion((v, g) => {
+    const dev = g.filter((r) => !r.d.holdout);
+    const held = g.filter((r) => r.d.holdout);
+    return (
+      `Detected with \`${v}\`, tuning drafts: **${dev.filter((r) => r.detectedS2).length} of ${dev.length} run** (6 planted); by the model alone, before the code steps: ${dev.filter((r) => r.detectedS0).length} of ${dev.length}.` +
+      (held.length ? ` Held-out drafts: **${held.filter((r) => r.detectedS2).length} of ${held.length}**; model alone ${held.filter((r) => r.detectedS0).length} of ${held.length}.` : "")
+    );
+  }, gapRows),
   "",
   "## Complete drafts: rows flagged although nothing was removed",
   "",

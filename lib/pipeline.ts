@@ -1,13 +1,15 @@
 import { generateJson, PipelineError } from "./gemini.ts";
 import {
-  COMPARE_SCHEMA,
   COMPARE_VERSION,
   EXTRACT_SCHEMA,
   EXTRACT_VERSION,
   comparePrompt,
+  compareSchema,
   extractPrompt,
+  isPartsVersion,
   type CompareVersion,
 } from "./prompts.ts";
+import { decideParts } from "./parts.ts";
 import { countWords, limitText, parseWordLimit, withinLimit } from "./counted.ts";
 import { locateQuote } from "./quoteLock.ts";
 import {
@@ -82,7 +84,7 @@ export async function compareDraft(
       stage: "compare",
       promptVersion: version,
       prompt: comparePrompt(judged, draft, version),
-      schema: COMPARE_SCHEMA,
+      schema: compareSchema(version),
       forceReplay,
     });
     meta = out.meta;
@@ -116,6 +118,19 @@ export async function compareDraft(
       // "Do not publish passwords" is not missing from a draft that never mentions passwords.
       if (req.type === "conduct") return { ...none, verdict: "check", note, checkReason: "rule_not_mentioned" };
       return { ...none, verdict: "missing", note };
+    }
+    if ((r.verdict === "met" || r.verdict === "partial") && isPartsVersion(version)) {
+      const d = decideParts(req, r, draft);
+      discardedEvidence += d.discarded;
+      const first = d.parts.find((p) => p.evStart !== null);
+      return {
+        ...none,
+        ...(first && { evidence: first.evidence, evStart: first.evStart, evEnd: first.evEnd }),
+        verdict: d.verdict,
+        note,
+        ...(d.checkReason && { checkReason: d.checkReason }),
+        ...(d.parts.length && { parts: d.parts }),
+      };
     }
     if (r.verdict === "met" || r.verdict === "partial") {
       const span = typeof r.evidence === "string" ? locateQuote(draft, r.evidence) : null;

@@ -115,3 +115,21 @@ The recorded sample (`A_gap2`) now shows the removed part as Partial and is kept
 inside a 390 px frame because headless Chrome will not open a window that narrow).
 
 Who checked: the code was written and the results were read by an AI (Claude). No human review so far.
+
+### Day 2, late evening: held-out drafts and `compare-v3` (code only, 0 calls)
+
+- **Two held-out gap drafts first.** `A_hold1_ai_tools` (the "AI tools we used while building" paragraph
+  removed; key items S2-09, S2-10) and `B_hold1_grandparent` (the grandparent paragraph removed; S5-08,
+  recommended) were built with `eval/make_gaps.py` and committed (aefc8cb) before any v3 prompt text existed.
+  They are scored only with v3 and later, and `eval/results.md` reports them on their own line.
+- **`compare-v3`.** The model now lists the parts of each requirement and gives one draft quote per part
+  (quotes may come from different paragraphs). Code locks every quote and decides: every part locked → the
+  model's verdict; some → Partial; none and the model quoted nothing → Missing (conduct rules → Check
+  yourself); none because its quotes were not in the draft → Check yourself. The screen shows each part with
+  its quote, or "No quote in your draft". Logic: `lib/parts.ts`, tests: `lib/parts.test.ts`.
+- **Default stays `compare-v2`** until v3 has saved runs, because "Try a sample" replays under the default
+  version. `COMPARE_VERSION=compare-v3` switches the app; `scripts/compare.ts` takes the version as an argument.
+- Checked: `npm test` (20), typecheck, build. The parts screen was checked on a v3-shaped copy of the saved
+  sample response in a temporary runs folder (not committed): a row the model called Met with one unquoted
+  part shows as Partial.
+- Planned run (after the daily limit resets): 8 tuning drafts + 2 held-out = 10 calls.

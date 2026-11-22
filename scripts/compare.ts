@@ -1,6 +1,6 @@
 // Runs one comparison without the dev server: replays the saved extraction and
 // calls the model live for the comparison with the chosen prompt version.
-// usage: node --env-file=.env.local scripts/compare.ts <notice> <draft> [compare-v1|compare-v2]
+// usage: node --env-file=.env.local scripts/compare.ts <notice> <draft> [compare-v1|compare-v2|compare-v3]
 import { readFileSync } from "node:fs";
 import { compareDraft, extractRequirements } from "../lib/pipeline.ts";
 import { COMPARE_VERSION, COMPARE_VERSIONS, type CompareVersion } from "../lib/prompts.ts";
