@@ -133,3 +133,38 @@ Who checked: the code was written and the results were read by an AI (Claude). N
   sample response in a temporary runs folder (not committed): a row the model called Met with one unquoted
   part shows as Partial.
 - Planned run (after the daily limit resets): 8 tuning drafts + 2 held-out = 10 calls.
+
+### Day 3 (Nov 23): `compare-v3` live runs (10 calls, 9 answers, 1 timeout)
+
+Ran `compare-v3` on the eight tuning drafts, then on the two held-out drafts, with no prompt change in
+between. `node eval/score.ts` scores v1, v2 and v3 side by side (`eval/results.md`).
+
+| | compare-v1 | compare-v2 | compare-v3 |
+|---|---|---|---|
+| Planted gaps detected, tuning drafts (shown) | 1 of 6 | 4 of 6 | 3 of 6 |
+| Same, model alone | 0 of 6 | 3 of 6 | 2 of 6 |
+| Held-out drafts | not run | not run | 1 of 2 |
+| `A_complete`: rows flagged with nothing removed | 0 | 3 | 4 |
+| `B_complete`: rows flagged with nothing removed | 1 | 2 | no answer (timeout at 100 s) |
+| Draft quotes thrown away by Quote Lock | 0 | 0 | 0 |
+| Call time | 17 to 68 s | 34 to 57 s | 26 to 97 s, one over 100 s |
+
+- **v3 is not better than v2, so the app default stays `compare-v2`.** v3 found the two single-paragraph
+  gaps as Missing (v2 said Partial) but lost `A_gap3_credits`, and still passes `B_gap1` and `B_gap2`.
+- **Why the misses happen (read from the saved quotes).** In every missed case the model quoted a real
+  sentence that is still in the draft and touches the requirement: after the credits paragraph is removed,
+  another paragraph still says "we used an AI coding assistant to draft the first version of the JSON
+  checking code"; after the AI-tools paragraph is removed, "RotaMate sends the pasted chat to the Gemini
+  API" is still there; after the "shaped your future" part is removed, "I now know I can handle what comes
+  after" remains. The planted-gap key counts these as gaps because the paragraph written for the
+  requirement is gone. We do not change the key after seeing results; the write-up reports the count as is
+  and shows these quotes, since the tool's claim is "here is the sentence I relied on, judge it yourself".
+- **What per-part quoting did do:** the two-paragraph false Partial from v2 (credits + AI tools in
+  `A_complete`) is gone. The four rows v3 flags in `A_complete` are judging criteria ("Demonstrate
+  creativity and originality" and three more) that the model marks Missing because no sentence states them.
+- **Held-out:** `B_hold1_grandparent` detected (Missing, recommended item); `A_hold1_ai_tools` not detected.
+- **Speed:** v3 output is longer. One call took 97 s and one hit the 100 s timeout, which is too close to
+  the 120 s route limit for a public demo. Another reason to stay on v2.
+- `B_complete` under v3 was not retried: the run was capped at 10 calls.
+
+Who checked: the runs were made and read by an AI (Claude). No human review so far.

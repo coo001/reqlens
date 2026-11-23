@@ -8,7 +8,7 @@ How to read this:
 - The sample is small: 5 notices, 10 drafts, 8 planted gaps. One run per input at temperature 0.
 - Prompts were adjusted on the first 8 drafts (6 gaps). The 2 held-out gap drafts were built before `compare-v3` was written and are run only with v3, so they are the only results here from drafts no prompt was tuned on.
 
-**Not run yet (no saved response):** compare-v3 comparison of A_complete; compare-v3 comparison of A_gap1_problem; compare-v3 comparison of A_gap2_ai_details; compare-v3 comparison of A_gap3_credits; compare-v3 comparison of B_complete; compare-v3 comparison of B_gap1_future; compare-v3 comparison of B_gap2_persevere; compare-v3 comparison of B_gap3_overlength; compare-v3 comparison of A_hold1_ai_tools; compare-v3 comparison of B_hold1_grandparent.
+**Not run yet (no saved response):** compare-v3 comparison of B_complete.
 
 ## Requirement extraction, by stage
 
@@ -40,19 +40,28 @@ Each gap draft is a complete draft with one paragraph removed (or, for the last 
 |---|---|---|---|---|---|---|---|
 | A_gap1_problem | problem explanation removed | S2-13 | compare-v1 | R11 met | R11 met | **no** | **no** |
 | A_gap1_problem | problem explanation removed | S2-13 | compare-v2 | R11 partial | R11 partial | yes | yes |
+| A_gap1_problem | problem explanation removed | S2-13 | compare-v3 | R11 missing | R11 missing | yes | yes |
 | A_gap2_ai_details | AI implementation details removed | S2-14 | compare-v1 | R12 met | R12 met | **no** | **no** |
 | A_gap2_ai_details | AI implementation details removed | S2-14 | compare-v2 | R12 partial | R12 partial | yes | yes |
+| A_gap2_ai_details | AI implementation details removed | S2-14 | compare-v3 | R12 missing | R12 missing | yes | yes |
 | A_gap3_credits | credits paragraph removed | S2-06, S2-07 | compare-v1 | R04 met, R05 met | R04 met, R05 met | **no** | **no** |
 | A_gap3_credits | credits paragraph removed | S2-06, S2-07 | compare-v2 | R04 partial, R05 met | R04 partial, R05 met | yes | yes |
+| A_gap3_credits | credits paragraph removed | S2-06, S2-07 | compare-v3 | R04 met, R05 met | R04 met, R05 met | **no** | **no** |
 | B_gap1_future | "shaped your future" part removed | S5-07 | compare-v1 | R06 met | R06 met | **no** | **no** |
 | B_gap1_future | "shaped your future" part removed | S5-07 | compare-v2 | R06 met | R06 met | **no** | **no** |
+| B_gap1_future | "shaped your future" part removed | S5-07 | compare-v3 | R06 met | R06 met | **no** | **no** |
 | B_gap2_persevere | "persevered" part removed | S5-06 | compare-v1 | R06 met | R06 met | **no** | **no** |
 | B_gap2_persevere | "persevered" part removed | S5-06 | compare-v2 | R06 met | R06 met | **no** | **no** |
+| B_gap2_persevere | "persevered" part removed | S5-06 | compare-v3 | R06 met | R06 met | **no** | **no** |
 | B_gap3_overlength | 537 words against a 500-word limit | S5-05 | compare-v1 | R05 cannot_tell | R05 missing | **no** | yes |
 | B_gap3_overlength | 537 words against a 500-word limit | S5-05 | compare-v2 | R05 cannot_tell | R05 missing | **no** | yes |
+| B_gap3_overlength | 537 words against a 500-word limit | S5-05 | compare-v3 | R05 cannot_tell | R05 missing | **no** | yes |
+| A_hold1_ai_tools | AI-tools-used paragraph removed (held out) | S2-09, S2-10 | compare-v3 | R07 met, R08 met | R07 met, R08 met | **no** | **no** |
+| B_hold1_grandparent | grandparent paragraph removed (held out) | S5-08 | compare-v3 | R07 missing | R07 missing | yes | yes |
 
 Detected with `compare-v1`, tuning drafts: **1 of 6 run** (6 planted); by the model alone, before the code steps: 0 of 6.
 Detected with `compare-v2`, tuning drafts: **4 of 6 run** (6 planted); by the model alone, before the code steps: 3 of 6.
+Detected with `compare-v3`, tuning drafts: **3 of 6 run** (6 planted); by the model alone, before the code steps: 2 of 6. Held-out drafts: **1 of 2**; model alone 1 of 2.
 
 ## Complete drafts: rows flagged although nothing was removed
 
@@ -62,6 +71,7 @@ Detected with `compare-v2`, tuning drafts: **4 of 6 run** (6 planted); by the mo
 | B_complete | compare-v1 | 14 | 1 | 0 | 7 | 6 | R08 missing: Submit your contact information. |
 | A_complete | compare-v2 | 30 | 1 | 2 | 12 | 15 | R04 partial: Credit any external libraries, projects, APIs, pretrained models, or AI coding assistants used.; R05 partial: Disclose the use of any external libraries, projects, APIs, pretrained models, or AI coding assistants.; R17 missing: Demonstrate creativity and originality. |
 | B_complete | compare-v2 | 14 | 1 | 1 | 7 | 5 | R06 partial: Describe a challenge you persevered through and how it shaped your future.; R08 missing: Submit your contact information. |
+| A_complete | compare-v3 | 30 | 4 | 0 | 12 | 14 | R17 missing: Demonstrate creativity and originality.; R18 missing: Demonstrate strong implementation and functionality.; R19 missing: Demonstrate usefulness and real-world impact.; R20 missing: Provide quality presentation and documentation. |
 
 ## Comparison, by stage (all drafts run so far)
 
@@ -73,8 +83,12 @@ Detected with `compare-v2`, tuning drafts: **4 of 6 run** (6 planted); by the mo
 | compare-v2 | S0 raw model output | 0 | 3 | 4 of 4 |
 | compare-v2 | S1 + Quote Lock (code) | 0 | 3 | 4 of 4 |
 | compare-v2 | S2 + Counted and the conduct-rule step (code) | 0 | 2 | 0 of 4 (the count is computed, not judged) |
+| compare-v3 | S0 raw model output | 0 | 5 | 4 of 4 |
+| compare-v3 | S1 + Quote Lock (code) | 0 | 5 | 4 of 4 |
+| compare-v3 | S2 + Counted and the conduct-rule step (code) | 0 | 4 | 0 of 4 (the count is computed, not judged) |
 
 Word-limit rows: the comparison prompt tells the model not to count words, so at S0 and S1 its answer for these rows is usually "cannot tell"; that is counted here as not correct. At S2 the verdict comes from the code's word count.
 
 Comparison calls with `compare-v1` took 31 s, 42 s, 44 s, 36 s, 17 s, 68 s, 41 s, 23 s.
 Comparison calls with `compare-v2` took 57 s, 47 s, 52 s, 41 s, 55 s, 51 s, 34 s, 51 s.
+Comparison calls with `compare-v3` took 97 s, 71 s, 31 s, 33 s, 26 s, 43 s, 51 s, 41 s, 42 s.
