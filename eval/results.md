@@ -69,9 +69,9 @@ Detected with `compare-v3`, tuning drafts: **3 of 6 run** (6 planted); by the mo
 |---|---|---|---|---|---|---|---|
 | A_complete | compare-v1 | 30 | 0 | 0 | 11 | 19 | none |
 | B_complete | compare-v1 | 14 | 1 | 0 | 7 | 6 | R08 missing: Submit your contact information. |
-| A_complete | compare-v2 | 30 | 1 | 2 | 12 | 15 | R04 partial: Credit any external libraries, projects, APIs, pretrained models, or AI coding assistants used.; R05 partial: Disclose the use of any external libraries, projects, APIs, pretrained models, or AI coding assistants.; R17 missing: Demonstrate creativity and originality. |
+| A_complete | compare-v2 | 30 | 0 | 2 | 13 | 15 | R04 partial: Credit any external libraries, projects, APIs, pretrained models, or AI coding assistants used.; R05 partial: Disclose the use of any external libraries, projects, APIs, pretrained models, or AI coding assistants. |
 | B_complete | compare-v2 | 14 | 1 | 1 | 7 | 5 | R06 partial: Describe a challenge you persevered through and how it shaped your future.; R08 missing: Submit your contact information. |
-| A_complete | compare-v3 | 30 | 4 | 0 | 12 | 14 | R17 missing: Demonstrate creativity and originality.; R18 missing: Demonstrate strong implementation and functionality.; R19 missing: Demonstrate usefulness and real-world impact.; R20 missing: Provide quality presentation and documentation. |
+| A_complete | compare-v3 | 30 | 0 | 0 | 16 | 14 | none |
 
 ## Comparison, by stage (all drafts run so far)
 

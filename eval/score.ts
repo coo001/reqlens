@@ -98,6 +98,21 @@ for (const name of NOTICES) {
   for (const k of row.s1.keysMissed) unmatched.push(["key_missed", "S1", name, k.id, k.level, csv(k.quote)].join(","));
 }
 
+// extract-v2 is evaluation only: scored for the notices it was run on, next to
+// v1. Comparisons above and below always use the extract-v1 requirement list.
+type V2Row = { name: string; v1: ExtractionScore; v2: ExtractionScore; discarded: number; meta: string };
+const v2Rows: V2Row[] = [];
+for (const r of rows) {
+  const notice = read(`./notices/${r.name}.txt`);
+  const locked = await replay(() => extractRequirements(notice, true, "extract-v2"));
+  if (!locked) continue;
+  const items: ToolItem[] = locked.requirements.map((q) => ({ label: `${q.id} ${q.summary}`, level: q.level, span: { start: q.start, end: q.end } }));
+  const s = scoreExtraction(notice, keys.filter((k) => k.notice === r.name), items);
+  v2Rows.push({ name: r.name, v1: r.s1, v2: s, discarded: locked.discarded, meta: `${locked.meta?.modelVersion || locked.meta?.model}, ${((locked.meta?.durationMs ?? 0) / 1000).toFixed(0)} s` });
+  for (const t of s.toolOnly) unmatched.push(["tool_only", "S1-extract-v2", r.name, csv(t.label), t.level ?? "", csv(notice.slice(t.span!.start, t.span!.end))].join(","));
+  for (const k of s.keysMissed) unmatched.push(["key_missed", "S1-extract-v2", r.name, k.id, k.level, csv(k.quote)].join(","));
+}
+
 const sum = (f: (r: Row) => number) => rows.reduce((a, r) => a + f(r), 0);
 const ladder = (label: string, pick: (r: Row) => ExtractionScore) =>
   `| ${label} | ${pct(sum((r) => pick(r).matchedItems), sum((r) => pick(r).items))} | ${pct(sum((r) => pick(r).requiredFound), sum((r) => pick(r).requiredKeys))} | ${pct(sum((r) => pick(r).keysFound), sum((r) => pick(r).keys))} | ${sum((r) => pick(r).unlocatedItems)} |`;
@@ -216,6 +231,24 @@ out.push(
   "",
   "Items the overlap rule could not pair are listed in `eval/unmatched.csv` (`tool_only`: the tool returned it, no key item overlaps; `key_missed`: no tool item overlaps the key item).",
   "",
+);
+if (v2Rows.length) {
+  const cell = (x: ExtractionScore) => `${x.items} | ${pct(x.matchedItems, x.items)} | ${pct(x.requiredFound, x.requiredKeys)} | ${pct(x.keysFound, x.keys)}`;
+  out.push(
+    "## Extraction prompt v2 (evaluation only)",
+    "",
+    `\`extract-v2\` adds two paragraphs to v1: rubric lines are items with level "scoring", and each instruction inside an essay topic is an item. It was written after seeing what v1 missed on these notices, so these numbers are from the notices the prompt was adjusted on, not from unseen ones. It was run only on ${v2Rows.map((r) => r.name).join(" and ")}. The app and every comparison in this file still use \`extract-v1\`.`,
+    "",
+    "| Notice | Prompt | Tool items | Precision | Recall, required | Recall, all | Discarded by Quote Lock | Run |",
+    "|---|---|---|---|---|---|---|---|",
+    ...v2Rows.flatMap((r) => [
+      `| ${r.name} | extract-v1 | ${cell(r.v1)} | see above | see above |`,
+      `| ${r.name} | extract-v2 | ${cell(r.v2)} | ${r.discarded} | ${r.meta} |`,
+    ]),
+    "",
+  );
+}
+out.push(
   "## Planted gaps (main metric)",
   "",
   "Each gap draft is a complete draft with one paragraph removed (or, for the last one, a paragraph added to break the word limit). The gap counts as detected when a tool row linked to the removed requirement shows Missing or Partial.",

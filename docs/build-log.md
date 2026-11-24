@@ -168,3 +168,11 @@ between. `node eval/score.ts` scores v1, v2 and v3 side by side (`eval/results.m
 - `B_complete` under v3 was not retried: the run was capped at 10 calls.
 
 Who checked: the runs were made and read by an AI (Claude). No human review so far.
+
+### Day 4 (Nov 24, morning): `extract-v2` written, 5 calls, 0 answers
+
+- `extract-v2` (lib/prompts.ts) adds two paragraphs to v1: every rubric line is an item with level "scoring", and each instruction inside an essay topic is an item. It was written after seeing what v1 missed on notices 1 and 5, so any result on those two notices is a tuned result.
+- Decision: `extract-v2` is evaluation only. The app default stays `extract-v1`, because every saved comparison is keyed by the v1 requirement list. `scripts/extract.ts` runs one extraction with a chosen version; `eval/score.ts` prints a v1/v2 table for the notices v2 has saved runs for.
+- Live calls: 5 (notice 1 twice, notice 5 three times, about 3 minutes apart at most). All returned 503 "overloaded" in 1.2 to 1.5 s. No v2 result exists yet. Not retried further in this session.
+- Code step added without any model call: when the model says "missing" for a row whose level is "scoring" (a judging criterion), the app shows "Check yourself" (reason `criterion_not_addressed`) instead of "Missing". This was added after looking at the false flags on the tuning draft A_complete. Effect on saved runs: A_complete flagged rows v2 3 -> 2, v3 4 -> 0. Planted-gap counts did not change (v1 1/6, v2 4/6, v3 3/6, held out 1/2).
+- `npm test` 20 pass, typecheck pass. Not checked on screen: the new "Check yourself" text.

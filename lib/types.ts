@@ -37,6 +37,7 @@ export type CheckReason =
   | "model_cannot_tell"
   | "evidence_discarded" // the model's evidence quote failed Quote Lock
   | "no_verdict" // the model returned nothing for this id
+  | "criterion_not_addressed" // a judging criterion the draft has no text for: judges decide, not a missing requirement
   | "rule_not_mentioned"; // a conduct rule the draft does not mention: silence is not a breach
 
 /** Set when code, not the model, decided a word-limit requirement. */

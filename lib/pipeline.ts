@@ -8,6 +8,7 @@ import {
   extractPrompt,
   isPartsVersion,
   type CompareVersion,
+  type ExtractVersion,
 } from "./prompts.ts";
 import { decideParts } from "./parts.ts";
 import { countWords, limitText, parseWordLimit, withinLimit } from "./counted.ts";
@@ -26,11 +27,15 @@ import {
 const includes = <T extends string>(list: readonly T[], v: unknown): v is T => list.includes(v as T);
 
 /** Stage 1 (model) + stage 2 (Quote Lock, code). */
-export async function extractRequirements(notice: string, forceReplay: boolean): Promise<ExtractResponse> {
+export async function extractRequirements(
+  notice: string,
+  forceReplay: boolean,
+  version: ExtractVersion = EXTRACT_VERSION,
+): Promise<ExtractResponse> {
   const { data, meta } = await generateJson({
     stage: "extract",
-    promptVersion: EXTRACT_VERSION,
-    prompt: extractPrompt(notice),
+    promptVersion: version,
+    prompt: extractPrompt(notice, version),
     schema: EXTRACT_SCHEMA,
     forceReplay,
   });
@@ -117,6 +122,9 @@ export async function compareDraft(
     if (r.verdict === "missing") {
       // "Do not publish passwords" is not missing from a draft that never mentions passwords.
       if (req.type === "conduct") return { ...none, verdict: "check", note, checkReason: "rule_not_mentioned" };
+      // A judging criterion ("demonstrates creativity") is scored by judges, not something a draft omits.
+      // Added 2026-11-24 after seeing the tuning drafts' false flags; no model call changed.
+      if (req.level === "scoring") return { ...none, verdict: "check", note, checkReason: "criterion_not_addressed" };
       return { ...none, verdict: "missing", note };
     }
     if ((r.verdict === "met" || r.verdict === "partial") && isPartsVersion(version)) {

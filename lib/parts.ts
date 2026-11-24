@@ -35,5 +35,6 @@ export function decideParts(req: Requirement, r: any, draft: string): PartsDecis
   if (discarded > 0) return { verdict: "check", checkReason: "evidence_discarded", parts: [], discarded };
   // "met" or "partial" with no quote at all: by the prompt's own rule this is missing.
   if (req.type === "conduct") return { verdict: "check", checkReason: "rule_not_mentioned", parts: [], discarded };
+  if (req.level === "scoring") return { verdict: "check", checkReason: "criterion_not_addressed", parts: [], discarded };
   return { verdict: "missing", parts: [], discarded };
 }
