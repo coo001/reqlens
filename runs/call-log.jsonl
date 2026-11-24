@@ -46,3 +46,5 @@
 {"date":"2026-11-24","at":"2026-11-24T01:15:57.501Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v2__gemini-3.5-flash__37884949ad22b6f2","status":503,"durationMs":1235}
 {"date":"2026-11-24","at":"2026-11-24T01:16:19.997Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v2__gemini-3.5-flash__c84e3c7bb3154c8c","status":503,"durationMs":1213}
 {"date":"2026-11-24","at":"2026-11-24T01:16:21.580Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v2__gemini-3.5-flash__37884949ad22b6f2","status":503,"durationMs":1444}
+{"date":"2026-11-24","at":"2026-11-24T06:04:29.534Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v2__gemini-3.5-flash__c84e3c7bb3154c8c","status":200,"durationMs":41521}
+{"date":"2026-11-24","at":"2026-11-24T06:05:12.234Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v2__gemini-3.5-flash__37884949ad22b6f2","status":200,"durationMs":37403}

@@ -176,3 +176,25 @@ Who checked: the runs were made and read by an AI (Claude). No human review so f
 - Live calls: 5 (notice 1 twice, notice 5 three times, about 3 minutes apart at most). All returned 503 "overloaded" in 1.2 to 1.5 s. No v2 result exists yet. Not retried further in this session.
 - Code step added without any model call: when the model says "missing" for a row whose level is "scoring" (a judging criterion), the app shows "Check yourself" (reason `criterion_not_addressed`) instead of "Missing". This was added after looking at the false flags on the tuning draft A_complete. Effect on saved runs: A_complete flagged rows v2 3 -> 2, v3 4 -> 0. Planted-gap counts did not change (v1 1/6, v2 4/6, v3 3/6, held out 1/2).
 - `npm test` 20 pass, typecheck pass. Not checked on screen: the new "Check yourself" text.
+
+### Day 4, 15:00 KST: extract-v2 measured (2 live calls, both answered first try)
+
+Calls today: 7 of 13 (five 503s in the morning, two answers now). Runs: n1 42 s, n5 37 s, model version `gemini-3.6-flash`, 0 quotes discarded by Quote Lock.
+
+| Notice | Prompt | Tool items | Precision | Recall, required | Recall, all |
+|---|---|---|---|---|---|
+| n1 (this challenge's rules and resources) | extract-v1 | 30 | 100.0% (30/30) | 88.2% (15/17) | 42.3% (22/52) |
+| n1 | extract-v2 | 56 | 98.2% (55/56) | 82.4% (14/17) | 90.4% (47/52) |
+| n5 (essay contest) | extract-v1 | 15 | 93.3% (14/15) | 58.8% (10/17) | 66.7% (14/21) |
+| n5 | extract-v2 | 21 | 90.5% (19/21) | 94.1% (16/17) | 95.2% (20/21) |
+
+- What v2 fixed: all 25 rubric lines of n1 are now items with level "scoring" (v1: none), and the essay-topic instructions of n5 are items (required 10 → 16 of 17).
+- What v2 did not fix or made worse: on n1 it missed three required eligibility lines (S1-03, S1-04, S1-05; v1 missed two required items), so required recall on n1 went down by one item. On n5 it missed the grade-division line (S4-02) and added two items the key does not have ("Does it even matter?", "Watch our ... video").
+- These two notices are the ones the v2 text was adjusted on. They are not unseen data, and the write-up must say so.
+- Decision: extract-v2 is **not** made the app default. Reasons: (1) required recall on n1 dropped by one; (2) every saved comparison and both samples are keyed by the extract-v1 requirement list, so a switch would need all comparisons and samples recorded again (10+ calls) two days before the feature freeze; (3) n2 and n4, the notices behind the samples, have no rubric or essay-topic lines for v2 to help with. v2 stays in `eval/` as a measured prompt iteration.
+
+Checks without model calls (REPLAY=1, FAULT=compare:overloaded:2, local dev server, real browser):
+- Pasted n2 and A_complete, pressed "Check my draft": one `/api/extract` 200, then `/api/compare` 503 twice (first try plus the automatic retry), and the message "Comparing with your draft failed: ... The requirement list is kept: checking again starts from the comparison. Your text is still in the boxes above." (`docs/screens/resume_after_failed_compare.png`).
+- Pressed the button again: only one more request, `/api/compare` 200. `/api/extract` was not called again, the error went away and the results appeared.
+- Row R17 ("Demonstrate creativity and originality") shows "Check yourself" with the new text "A judging criterion your draft has no clear text for. Judges score this; decide yourself whether to add something." (`docs/screens/criterion_check_yourself.png`).
+- `npm run build` passes. Call log did not grow during these checks.

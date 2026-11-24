@@ -32,6 +32,17 @@ Quote Lock discarded 1 of 112 extracted items.
 
 Items the overlap rule could not pair are listed in `eval/unmatched.csv` (`tool_only`: the tool returned it, no key item overlaps; `key_missed`: no tool item overlaps the key item).
 
+## Extraction prompt v2 (evaluation only)
+
+`extract-v2` adds two paragraphs to v1: rubric lines are items with level "scoring", and each instruction inside an essay topic is an item. It was written after seeing what v1 missed on these notices, so these numbers are from the notices the prompt was adjusted on, not from unseen ones. It was run only on n1_gaibc_rules_and_resources and n5_stossel_essay_contest. The app and every comparison in this file still use `extract-v1`.
+
+| Notice | Prompt | Tool items | Precision | Recall, required | Recall, all | Discarded by Quote Lock | Run |
+|---|---|---|---|---|---|---|---|
+| n1_gaibc_rules_and_resources | extract-v1 | 30 | 100.0% (30/30) | 88.2% (15/17) | 42.3% (22/52) | see above | see above |
+| n1_gaibc_rules_and_resources | extract-v2 | 56 | 98.2% (55/56) | 82.4% (14/17) | 90.4% (47/52) | 0 | gemini-3.6-flash, 42 s |
+| n5_stossel_essay_contest | extract-v1 | 15 | 93.3% (14/15) | 58.8% (10/17) | 66.7% (14/21) | see above | see above |
+| n5_stossel_essay_contest | extract-v2 | 21 | 90.5% (19/21) | 94.1% (16/17) | 95.2% (20/21) | 0 | gemini-3.6-flash, 37 s |
+
 ## Planted gaps (main metric)
 
 Each gap draft is a complete draft with one paragraph removed (or, for the last one, a paragraph added to break the word limit). The gap counts as detected when a tool row linked to the removed requirement shows Missing or Partial.
