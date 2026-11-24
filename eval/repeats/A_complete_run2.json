@@ -1,0 +1,436 @@
+{
+  "label": "A_complete_run2",
+  "notice": "eval/notices/n2_first_ai_app_rules.txt",
+  "draft": "eval/drafts/A_complete.txt",
+  "extract": {
+    "requirements": [
+      {
+        "id": "R01",
+        "summary": "Comply with applicable age, geographic, and platform requirements.",
+        "quote": "All participants must comply with applicable age, geographic, and platform requirements.",
+        "level": "required",
+        "type": "eligibility",
+        "checkable": "no",
+        "start": 167,
+        "end": 255
+      },
+      {
+        "id": "R02",
+        "summary": "Ensure all team members meet eligibility requirements.",
+        "quote": "Every team member must meet the eligibility requirements.",
+        "level": "required",
+        "type": "eligibility",
+        "checkable": "no",
+        "start": 385,
+        "end": 442
+      },
+      {
+        "id": "R03",
+        "summary": "Demonstrate your own work in the project.",
+        "quote": "Projects should demonstrate the participant's own work.",
+        "level": "recommended",
+        "type": "content",
+        "checkable": "partial",
+        "start": 474,
+        "end": 529
+      },
+      {
+        "id": "R04",
+        "summary": "Credit and disclose the use of any external tools or libraries.",
+        "quote": "provided they are appropriately credited and their use is disclosed.",
+        "level": "required",
+        "type": "disclosure",
+        "checkable": "yes",
+        "start": 635,
+        "end": 703
+      },
+      {
+        "id": "R05",
+        "summary": "Do not submit another person's project as your own.",
+        "quote": "Submitting another person's project as your own is not permitted.",
+        "level": "required",
+        "type": "conduct",
+        "checkable": "no",
+        "start": 704,
+        "end": 769
+      },
+      {
+        "id": "R06",
+        "summary": "Explain which AI tools were used.",
+        "quote": "They must explain which tools they used",
+        "level": "required",
+        "type": "disclosure",
+        "checkable": "yes",
+        "start": 856,
+        "end": 895
+      },
+      {
+        "id": "R07",
+        "summary": "Identify your own contributions when using AI tools.",
+        "quote": "identify their own contributions.",
+        "level": "required",
+        "type": "disclosure",
+        "checkable": "yes",
+        "start": 900,
+        "end": 933
+      },
+      {
+        "id": "R08",
+        "summary": "Include a clear description of the project.",
+        "quote": "Each project must include a clear description",
+        "level": "required",
+        "type": "content",
+        "checkable": "yes",
+        "start": 1110,
+        "end": 1155
+      },
+      {
+        "id": "R09",
+        "summary": "Explain the problem the project addresses.",
+        "quote": "an explanation of the problem it addresses",
+        "level": "required",
+        "type": "content",
+        "checkable": "yes",
+        "start": 1157,
+        "end": 1199
+      },
+      {
+        "id": "R10",
+        "summary": "Provide details of the project's AI implementation.",
+        "quote": "details of its AI implementation",
+        "level": "required",
+        "type": "content",
+        "checkable": "yes",
+        "start": 1201,
+        "end": 1233
+      },
+      {
+        "id": "R11",
+        "summary": "Include a demonstration of the project.",
+        "quote": "a demonstration",
+        "level": "required",
+        "type": "deliverable",
+        "checkable": "partial",
+        "start": 1239,
+        "end": 1254
+      },
+      {
+        "id": "R12",
+        "summary": "Provide source code and setup instructions where applicable.",
+        "quote": "Source code and setup instructions should be provided where applicable.",
+        "level": "recommended",
+        "type": "deliverable",
+        "checkable": "partial",
+        "start": 1256,
+        "end": 1327
+      },
+      {
+        "id": "R13",
+        "summary": "Submit your project by the official deadline.",
+        "quote": "All submissions must be received by the deadline shown on the official hackathon page.",
+        "level": "required",
+        "type": "deadline",
+        "checkable": "no",
+        "start": 1328,
+        "end": 1414
+      },
+      {
+        "id": "R14",
+        "summary": "Demonstrate creativity and originality.",
+        "quote": "Creativity and originality: 25%",
+        "level": "scoring",
+        "type": "scoring",
+        "checkable": "partial",
+        "start": 1492,
+        "end": 1523
+      },
+      {
+        "id": "R15",
+        "summary": "Provide strong implementation and functionality.",
+        "quote": "Implementation and functionality: 30%",
+        "level": "scoring",
+        "type": "scoring",
+        "checkable": "partial",
+        "start": 1526,
+        "end": 1563
+      },
+      {
+        "id": "R16",
+        "summary": "Focus on usefulness and real-world impact.",
+        "quote": "Usefulness and real-world impact: 25%",
+        "level": "scoring",
+        "type": "scoring",
+        "checkable": "partial",
+        "start": 1566,
+        "end": 1603
+      },
+      {
+        "id": "R17",
+        "summary": "Deliver clear presentation and documentation.",
+        "quote": "Presentation and documentation: 20%",
+        "level": "scoring",
+        "type": "scoring",
+        "checkable": "partial",
+        "start": 1606,
+        "end": 1641
+      },
+      {
+        "id": "R18",
+        "summary": "Do not submit malicious software, illegal content, stolen IP, or harmful applications.",
+        "quote": "Do not submit malicious software, illegal content, stolen intellectual property, or applications designed to harm others.",
+        "level": "required",
+        "type": "conduct",
+        "checkable": "no",
+        "start": 1750,
+        "end": 1871
+      },
+      {
+        "id": "R19",
+        "summary": "Protect personal information in your submission.",
+        "quote": "Protect personal information",
+        "level": "required",
+        "type": "conduct",
+        "checkable": "partial",
+        "start": 1872,
+        "end": 1900
+      },
+      {
+        "id": "R20",
+        "summary": "Never publish API keys, passwords, or confidential data.",
+        "quote": "never publish API keys, passwords, or confidential data.",
+        "level": "required",
+        "type": "disclosure",
+        "checkable": "yes",
+        "start": 1905,
+        "end": 1961
+      },
+      {
+        "id": "R21",
+        "summary": "Review all published deadlines, requirements, and updates.",
+        "quote": "Participants are responsible for reviewing the published deadlines, requirements, and updates.",
+        "level": "required",
+        "type": "conduct",
+        "checkable": "no",
+        "start": 2243,
+        "end": 2337
+      },
+      {
+        "id": "R22",
+        "summary": "Agree to follow event rules and Devpost policies.",
+        "quote": "agree to follow these rules and Devpost's applicable terms and policies.",
+        "level": "required",
+        "type": "conduct",
+        "checkable": "no",
+        "start": 2360,
+        "end": 2432
+      }
+    ],
+    "discarded": 0,
+    "meta": {
+      "source": "live",
+      "model": "gemini-3.5-flash",
+      "modelVersion": "gemini-3.6-flash",
+      "promptVersion": "extract-v1",
+      "runId": "extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f",
+      "durationMs": 45747,
+      "recordedAt": "2026-11-24T11:05:25.964Z"
+    }
+  },
+  "compare": {
+    "results": [
+      {
+        "id": "R01",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R02",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R03",
+        "verdict": "met",
+        "evidence": "We wrote the prompts, the fairness rules, and the source-message check ourselves, and we tested the assistant's checking code against ten chats where we knew the correct answer; it missed swaps that happened across two messages, so we rewrote that part by hand.",
+        "evStart": 2078,
+        "evEnd": 2339,
+        "note": "The draft details the specific parts of the project created and modified directly by the team."
+      },
+      {
+        "id": "R04",
+        "verdict": "met",
+        "evidence": "Built with and credits: Next.js and React for the interface, the Gemini API for the two AI calls, Zod for checking the JSON shape, and the open-source date-fns library for day handling.",
+        "evStart": 1694,
+        "evEnd": 1879,
+        "note": "The draft lists and credits all external tools and libraries used in the project."
+      },
+      {
+        "id": "R05",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R06",
+        "verdict": "met",
+        "evidence": "AI tools we used while building: we used an AI coding assistant to draft the first version of the JSON checking code and the CSS layout.",
+        "evStart": 1941,
+        "evEnd": 2077,
+        "note": "The draft explains which AI tools were used during development."
+      },
+      {
+        "id": "R07",
+        "verdict": "met",
+        "evidence": "We wrote the prompts, the fairness rules, and the source-message check ourselves, and we tested the assistant's checking code against ten chats where we knew the correct answer; it missed swaps that happened across two messages, so we rewrote that part by hand.",
+        "evStart": 2078,
+        "evEnd": 2339,
+        "note": "The draft clearly identifies the team's own contributions when utilizing AI tools."
+      },
+      {
+        "id": "R08",
+        "verdict": "met",
+        "evidence": "RotaMate is a small web app for shared houses. You paste the chore part of your house group chat, and RotaMate returns a weekly rota that names who does each task, on which day, and why the split is fair.",
+        "evStart": 53,
+        "evEnd": 257,
+        "note": "The draft provides a clear description of the application and its overall function."
+      },
+      {
+        "id": "R09",
+        "verdict": "met",
+        "evidence": "The problem: in a shared student house, chores are usually agreed in a long group chat. Promises like \"I'll take bins this week\" get buried under memes, nobody remembers who swapped with whom, and the same two people end up cleaning the kitchen.",
+        "evStart": 304,
+        "evEnd": 549,
+        "note": "The draft explains the problem of tracking informal chore agreements in group chats."
+      },
+      {
+        "id": "R10",
+        "verdict": "met",
+        "evidence": "How the AI works: RotaMate sends the pasted chat to the Gemini API in two steps. The first call extracts every chore commitment, swap, and excuse as structured JSON (person, task, day, source message). The second call proposes a rota from that list.",
+        "evStart": 767,
+        "evEnd": 1016,
+        "note": "The draft details the multi-step AI implementation using the Gemini API."
+      },
+      {
+        "id": "R11",
+        "verdict": "met",
+        "evidence": "Demo: the demonstration video walks through one real-looking chat from paste to finished rota in under three minutes: https://youtu.be/rotamate-demo (unlisted, no login needed).",
+        "evStart": 1276,
+        "evEnd": 1453,
+        "note": "The draft includes a link and details for a video demonstration."
+      },
+      {
+        "id": "R12",
+        "verdict": "met",
+        "evidence": "Source code and setup: the code is public at https://github.com/example/rotamate. The README explains how to run it locally with Node 20 and where to place your own free Gemini API key in a local environment file that is never committed.",
+        "evStart": 1455,
+        "evEnd": 1692,
+        "note": "The draft provides source code repository details and setup instructions."
+      },
+      {
+        "id": "R13",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R14",
+        "verdict": "partial",
+        "evidence": "You paste the chore part of your house group chat, and RotaMate returns a weekly rota that names who does each task, on which day, and why the split is fair.",
+        "evStart": 100,
+        "evEnd": 257,
+        "note": "The draft describes an innovative application concept but does not explicitly discuss creativity and originality."
+      },
+      {
+        "id": "R15",
+        "verdict": "met",
+        "evidence": "Our own code then checks the proposal: every task must appear exactly once per week, nobody may get more than two extra tasks, and every assignment must point back to a real message in the chat.",
+        "evStart": 1017,
+        "evEnd": 1211,
+        "note": "The draft explains technical validation logic supporting robust implementation and functionality."
+      },
+      {
+        "id": "R16",
+        "verdict": "met",
+        "evidence": "Promises like \"I'll take bins this week\" get buried under memes, nobody remembers who swapped with whom, and the same two people end up cleaning the kitchen.",
+        "evStart": 392,
+        "evEnd": 549,
+        "note": "The draft addresses the real-world impact and usefulness of automated chore organization for shared student housing."
+      },
+      {
+        "id": "R17",
+        "verdict": "met",
+        "evidence": "The README explains how to run it locally with Node 20 and where to place your own free Gemini API key in a local environment file that is never committed.",
+        "evStart": 1537,
+        "evEnd": 1692,
+        "note": "The draft describes clear documentation provided in the repository README."
+      },
+      {
+        "id": "R18",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R19",
+        "verdict": "met",
+        "evidence": "The house chat in the demo is invented for this submission.",
+        "evStart": 1880,
+        "evEnd": 1939,
+        "note": "The draft confirms that synthetic data was used to protect personal information."
+      },
+      {
+        "id": "R20",
+        "verdict": "met",
+        "evidence": "where to place your own free Gemini API key in a local environment file that is never committed.",
+        "evStart": 1596,
+        "evEnd": 1692,
+        "note": "The draft outlines precautions taken to avoid publishing API keys or secret data."
+      },
+      {
+        "id": "R21",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      },
+      {
+        "id": "R22",
+        "evidence": "",
+        "evStart": null,
+        "evEnd": null,
+        "verdict": "check",
+        "note": "",
+        "checkReason": "outside_text"
+      }
+    ],
+    "discardedEvidence": 0,
+    "meta": {
+      "source": "live",
+      "model": "gemini-3.5-flash",
+      "modelVersion": "gemini-3.6-flash",
+      "promptVersion": "compare-v2",
+      "runId": "compare__compare-v2__gemini-3.5-flash__7fcd1793a64be420",
+      "durationMs": 62320,
+      "recordedAt": "2026-11-24T11:06:28.300Z"
+    }
+  }
+}

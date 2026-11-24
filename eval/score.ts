@@ -300,6 +300,11 @@ out.push(
   "",
 );
 
-writeFileSync(here("./results.md"), out.join("\n"));
+// Sections produced by other scripts (repeat runs, chatbot baseline, organizer summary) are kept in results_extra.md.
+let extra = "";
+try {
+  extra = readFileSync(here("./results_extra.md"), "utf8");
+} catch {}
+writeFileSync(here("./results.md"), out.join("\n") + extra);
 writeFileSync(here("./unmatched.csv"), unmatched.join("\n") + "\n");
 console.log(out.join("\n"));

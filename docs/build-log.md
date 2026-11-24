@@ -198,3 +198,12 @@ Checks without model calls (REPLAY=1, FAULT=compare:overloaded:2, local dev serv
 - Pressed the button again: only one more request, `/api/compare` 200. `/api/extract` was not called again, the error went away and the results appeared.
 - Row R17 ("Demonstrate creativity and originality") shows "Check yourself" with the new text "A judging criterion your draft has no clear text for. Judges score this; decide yourself whether to add something." (`docs/screens/criterion_check_yourself.png`).
 - `npm run build` passes. Call log did not grow during these checks.
+
+### Day 4, 20:00 KST: repeat runs, chatbot baseline, organizer summary (6 live calls, all answered first try; 13 of 13 today)
+
+- **Repeat (4 calls).** Notice 2 + complete draft A run two more times with the same prompts at temperature 0. Items per run: 30, 22, 23; required items: 22, 16, 16. Only 8 quote spans are the same in all three runs. Run 1 (Nov 22) split lists into single elements, runs 2 and 3 (Nov 24, two minutes apart) kept whole sentences and agree with each other on every verdict. By the rule written before the build this is "not stable" and goes into the limitations. Runs 2 and 3 are not yet scored against the answer key.
+- **Chatbot baseline (2 of 3 calls).** One plain question, same model. On the draft with the problem paragraph removed the chatbot answered "MET" for "an explanation of the problem it addresses"; ReqLens shows that row as Partial. The other counts (required items found, non-verbatim quotes) are not done. The third pair is not run.
+- **Organizer summary (0 calls).** This challenge's "Getting started" section states 4 of 17 required items; the essay contest's "at a Glance" section states 10 of 17. The other three notices have no such section.
+- `scripts/repeat.ts` keeps the first recording in `runs/` and stores later runs in `runs/repeats/`. `eval/score.ts` now appends `eval/results_extra.md` to `results.md`; no number in the existing tables changed.
+- Not done: the folded Met group on the 52-row notice was not checked on screen (there is no recorded comparison for notice 1, so replay cannot reach the result screen).
+- `npm test` (20) and `npm run build` pass.
