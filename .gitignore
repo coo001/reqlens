@@ -6,3 +6,7 @@ node_modules/
 next-env.d.ts
 .DS_Store
 .vercel/
+
+# raw recordings (large); scene mp4 files are kept
+docs/video/raw/
+docs/video/*.mp4

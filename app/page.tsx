@@ -329,7 +329,7 @@ export default function Page() {
       <header className="top">
         <span className="wordmark">ReqLens</span>
         {checked && (
-          <span className="run-badge">{checked.mode === "sample" ? "Recorded sample" : "Live run"}</span>
+          <span className="run-badge">{checked.mode === "sample" ? "Recorded sample" : checked.extract.meta.source === "recorded" ? "Recorded run" : "Live run"}</span>
         )}
       </header>
 
@@ -479,7 +479,7 @@ export default function Page() {
               final checklist yourself.
             </p>
             <p className="run-meta">
-              {checked.mode === "sample" ? "Recorded sample" : "Live run"} · {checked.extract.meta.modelVersion || checked.extract.meta.model} ·{" "}
+              {checked.mode === "sample" ? "Recorded sample" : checked.extract.meta.source === "recorded" ? "Recorded run" : "Live run"} · {checked.extract.meta.modelVersion || checked.extract.meta.model} ·{" "}
               {checked.extract.meta.promptVersion}
               {checked.compare.meta && ` + ${checked.compare.meta.promptVersion}`} · recorded{" "}
               {checked.extract.meta.recordedAt.slice(0, 16).replace("T", " ")} UTC

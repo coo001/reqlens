@@ -220,9 +220,10 @@ export async function generateJson(args: CallArgs): Promise<{ data: any; meta: R
     };
     try {
       await mkdir(RUNS_DIR, { recursive: true });
-      await writeFile(runPath(runId), JSON.stringify(saved, null, 2));
+      // "wx": an earlier recording of the same input is kept, never overwritten.
+      await writeFile(runPath(runId), JSON.stringify(saved, null, 2), { flag: "wx" });
     } catch {
-      // read-only filesystem: the result is still returned, just not recorded
+      // read-only filesystem or already recorded: the result is still returned
     }
   }
 
