@@ -57,3 +57,10 @@
 {"date":"2026-11-25","at":"2026-11-25T01:30:38.724Z","stage":"chatbot","model":"gemini-3.5-flash","runId":"chatbot__n4_B_complete","status":200,"durationMs":11717}
 {"date":"2026-11-25","at":"2026-11-25T01:30:47.316Z","stage":"extract","model":"gemini-3.5-flash-lite","runId":"extract__extract-v1__gemini-3.5-flash-lite__e056488a2e9bdf5f","status":200,"durationMs":3627}
 {"date":"2026-11-25","at":"2026-11-25T01:30:49.883Z","stage":"extract","model":"gemini-3.5-flash-lite","runId":"extract__extract-v1__gemini-3.5-flash-lite__83aa723cfdc3566d","status":200,"durationMs":2476}
+{"date":"2026-11-25","at":"2026-11-25T01:34:36.700Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__6e8cda53a8a95ac2","status":200,"durationMs":38313}
+{"date":"2026-11-25","at":"2026-11-25T01:35:36.163Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__68189bb15e7052d3","status":200,"durationMs":52048}
+{"date":"2026-11-25","at":"2026-11-25T01:36:56.680Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__83aa723cfdc3566d","status":200,"durationMs":15253}
+{"date":"2026-11-25","at":"2026-11-25T01:39:01.867Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__a3a52e768953061a","status":200,"durationMs":32055}
+{"date":"2026-11-25","at":"2026-11-25T01:39:18.642Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__b3a2525c60cbe34e","status":200,"durationMs":2270}
+{"date":"2026-11-25","at":"2026-11-25T01:39:37.405Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__83aa723cfdc3566d","status":200,"durationMs":12102}
+{"date":"2026-11-25","at":"2026-11-25T01:40:09.884Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__8248d30c9516b907","status":200,"durationMs":32456}

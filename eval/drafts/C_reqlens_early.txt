@@ -1,0 +1,13 @@
+ReqLens
+
+ReqLens checks a draft against the notice it answers. You paste a notice (hackathon rules, a contest call, a scholarship posting) and your draft. ReqLens lists every requirement it finds with the exact sentence it comes from, and shows side by side which part of your draft answers each one and what is missing.
+
+The problem. Students lose entries to requirements they did not notice: a word limit in the middle of a paragraph, a disclosure that is asked for on a second page, a list of four things where the draft covers three. Asking a chatbot "does my draft meet the rules" gives a confident answer that is hard to check. In our own test a chatbot answered "MET" for a requirement whose paragraph we had removed from the draft.
+
+How it works. Step 1: Gemini extracts the requirements, each with a quote from the notice, a level (required, recommended or scoring) and whether a written draft can show it. Step 2, Quote Lock: code keeps a quote only if it is found word for word in the notice. Step 3: Gemini compares each requirement with the draft and gives a verdict with a quote from the draft as evidence. Step 4, Counted, not guessed: when the notice states a word limit, code counts the words and sets the verdict. Step 5: requirements that text cannot prove, such as age, enrollment or a deadline, are never sent to the model and go to a "Check yourself" list.
+
+Example. A student pastes the rules of a first AI app hackathon and a project description. ReqLens shows 30 requirements. The description never explains the AI implementation in detail, so that row is shown as Partial with the sentence from the rules next to the closest sentence of the draft. The student adds a paragraph, presses Re-check, and the row turns to Met.
+
+Built with Next.js, React and the Gemini API.
+
+Code: https://github.com/example/reqlens

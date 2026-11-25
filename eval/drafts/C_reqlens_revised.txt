@@ -1,0 +1,24 @@
+ReqLens
+
+ReqLens checks a draft against the notice it answers. You paste a notice (hackathon rules, a contest call, a scholarship posting) and your draft. ReqLens lists every requirement it finds with the exact sentence it comes from, and shows side by side which part of your draft answers each one and what is missing.
+
+The problem. Students lose entries to requirements they did not notice: a word limit in the middle of a paragraph, a disclosure that is asked for on a second page, a list of four things where the draft covers three. Asking a chatbot "does my draft meet the rules" gives a confident answer that is hard to check. In our own test a chatbot answered "MET" for a requirement whose paragraph we had removed from the draft. We have no interviews or usage data; the evidence for the need is this test and five public notices we read closely.
+
+How it works. Step 1: Gemini extracts the requirements, each with a quote from the notice, a level (required, recommended or scoring) and whether a written draft can show it. Step 2, Quote Lock: code keeps a quote only if it is found word for word in the notice. Step 3: Gemini compares each requirement with the draft and gives a verdict with a quote from the draft as evidence. Step 4, Counted, not guessed: when the notice states a word limit, code counts the words and sets the verdict. Step 5: requirements that text cannot prove, such as age, enrollment or a deadline, are never sent to the model and go to a "Check yourself" list.
+
+Example. A student pastes the rules of a first AI app hackathon and a project description. ReqLens shows 30 requirements. The description never explains the AI implementation in detail, so that row is shown as Partial with the sentence from the rules next to the closest sentence of the draft. The student adds a paragraph, presses Re-check, and the row turns to Met.
+
+Development disclosure. No code existed before the hackathon. All code in the repository was written during the build period, starting on November 21, 2026. Before that date we prepared evaluation material only: text copies of five public notices, an answer key of requirements, and eight made-up drafts. Nothing in this project improves an earlier project, so there is no earlier starting point to compare with. The build log in the repository records what was finished on each day.
+
+AI disclosure. AI in the product: the Gemini API (gemini-3.5-flash, free tier) does the extraction and the comparison. AI in development: an AI coding assistant wrote most of the code and the prompts under our direction. The answer key was written by two AI models independently and merged by quote overlap; no human verified it. What we did ourselves: chose the problem, fixed the evaluation rules before the build, decided which prompt version to ship after reading the measured results, and checked the screens by hand.
+
+What is real and what is not. Every result on screen is labeled "Live run" or "Recorded sample". The two samples replay saved model responses and make no model call. The failure screens in the video are produced with a fault switch, and the video says so. Nothing is mocked beyond that.
+
+Known limits. English text only, no PDF or image input. In six drafts with one planted gap each, ReqLens flagged four. Running the same notice three times gave 30, 22 and 23 rows, because lists were split differently, although every required item of the answer key was covered each time. One model provider; when it is overloaded, live checks stop.
+
+Built with and credits. Next.js and React (MIT license) and the Gemini API. No other third-party code, data or media.
+
+Running it. Node 20 or newer, npm install, put a free Gemini API key in .env.local, npm run dev. Without a key the two samples still work. The only external service is the Gemini API.
+
+Code: https://github.com/example/reqlens (public)
+Demo video: not recorded yet.
