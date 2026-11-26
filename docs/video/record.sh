@@ -1,12 +1,13 @@
 #!/bin/bash
 # Starts the app with the env one scene needs, records it, stops the app. Silent; no model calls except "live" (3).
-# Usage: PW=/path/to/node_modules/playwright docs/video/record.sh <live|fault|long>
+# Usage: PW=/path/to/node_modules/playwright docs/video/record.sh <live|fault|long|pair>
 set -u
 cd "$(dirname "$0")/../.."
 case "$1" in
-  live)  PORT=3111; ENVS="RECORD=0 DAILY_CALL_CAP=4";;
+  live)  PORT=3111; ENVS="RECORD=0 DAILY_CALL_CAP=6";;
   fault) PORT=3112; ENVS="REPLAY=1 FAULT=compare:overloaded:2";;
   long)  PORT=3113; ENVS="REPLAY=1";;
+  pair)  PORT=3114; ENVS="REPLAY=1";;
   *) echo "scene?"; exit 2;;
 esac
 env $ENVS npx next dev -p $PORT > docs/video/raw/$1.server.log 2>&1 &

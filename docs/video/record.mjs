@@ -1,5 +1,5 @@
 // Records the three demo scenes from the running app with Playwright (headless, silent).
-// Usage: PW=/path/to/node_modules/playwright node docs/video/record.mjs <live|fault|long> <port>
+// Usage: PW=/path/to/node_modules/playwright node docs/video/record.mjs <live|fault|long|pair> <port>
 // The server for each scene is started by docs/video/record.sh with the env that scene needs.
 import { readFile, rename, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -61,7 +61,7 @@ async function press(loc) {
 }
 const submit = page.locator("button.primary");
 const results = page.locator("section.results");
-async function finished(timeout = 150000) {
+async function finished(timeout = 330000) {
   // Either the run ends (button enabled again) or an error band shows.
   await hold(400);
   await page.waitForFunction(() => !document.querySelector("button.primary")?.disabled, null, { timeout });
@@ -79,8 +79,8 @@ async function tour(ms = 9000) {
 
 let ok = true;
 try {
-  if (scene === "live" || scene === "long") {
-    const live = scene === "live";
+  if (scene !== "fault") {
+    const live = scene !== "long";
     const notice = await read(live ? "samples/notice_first_ai_app_rules.txt" : "eval/notices/n1_gaibc_rules_and_resources.txt");
     const d1 = await read(live ? "samples/draft_rotamate_gap.txt" : "eval/drafts/C_reqlens_early.txt");
     const d2 = await read(live ? "eval/drafts/A_complete.txt" : "eval/drafts/C_reqlens_revised.txt");
