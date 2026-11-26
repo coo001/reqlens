@@ -140,6 +140,20 @@ try {
         await hold(1500);
         await tour(live ? 9000 : 7000);
         mark("recheck_tour_done");
+        if (live) {
+          // The rows that got better are inside the folded Met group: open it and stop on the changed ones.
+          const changedRows = await page.locator("li.row:has(span.was)").evaluateAll((els) => els.map((e) => e.querySelector(".req-id")?.textContent + " " + e.querySelector(".was")?.parentElement?.textContent));
+          console.log("changed:", JSON.stringify(changedRows));
+          const fold = page.locator("details.met-group > summary");
+          if (await fold.count()) {
+            await glideTo(fold, 200, 1200);
+            await press(fold);
+            await hold(800);
+            const better = page.locator("details.met-group li.row:has(span.was)").first();
+            if (await better.count()) { await glideTo(better, 260, 1500); mark("better_shown"); await hold(6000); }
+            mark("better_done");
+          }
+        }
       }
     }
   } else if (scene === "fault") {

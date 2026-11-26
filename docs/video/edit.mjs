@@ -7,7 +7,7 @@ import path from "node:path";
 
 const FF = process.env.FF ?? "ffmpeg";
 const main = process.argv[2] ?? "pair";
-const OUT = path.resolve(process.argv[3] ?? "docs/video/demo_v0.mp4");
+const OUT = path.resolve(process.argv[3] ?? "docs/video/demo_v1.mp4");
 const RAW = path.resolve("docs/video/raw");
 const TMP = path.join(RAW, "edit");
 await rm(TMP, { recursive: true, force: true });
@@ -22,20 +22,20 @@ const runLabel = isLive ? "Live run: real calls to Gemini" : "Recorded run: save
 // ---- cards (rendered from HTML with the app's own colours) ----
 const card = (body) => `<!doctype html><meta charset="utf-8"><style>
 html,body{margin:0;width:1920px;height:1080px;background:#fff;color:#16181d;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
-.w{padding:150px 170px}.k{font-size:30px;color:#5a606b;letter-spacing:.04em;text-transform:uppercase;margin-bottom:36px}
+.w{padding:0 170px;height:1080px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}.f{font-size:30px;color:#5a606b;border-top:1px solid #e3e4e6;padding-top:30px;margin-top:50px;max-width:1500px}.k{font-size:30px;color:#5a606b;letter-spacing:.04em;text-transform:uppercase;margin-bottom:36px}
 h1{font-size:84px;line-height:1.12;margin:0 0 40px;max-width:1500px;letter-spacing:-.02em}p{font-size:42px;line-height:1.4;color:#5a606b;max-width:1450px;margin:0 0 22px}
-table{border-collapse:collapse;font-size:40px;margin:10px 0 44px}td{padding:20px 60px 20px 0;border-bottom:1px solid #e3e4e6}td.n{font-weight:700;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;font-size:40px;margin:10px 0 44px}td{padding:20px 60px 20px 0;border-bottom:1px solid #e3e4e6}td.n{white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums}
 .s{font-size:32px}</style><div class="w">${body}</div>`;
 const CARDS = {
-  title: card(`<div class="k">ReqLens</div><h1>Rules pages are long. One missed line can cost an entry.</h1><p>A requirement checker for hackathon rules, contest calls and scholarship postings.</p>`),
+  title: card(`<div class="k">ReqLens</div><h1>Rules pages are long. One missed line can cost an entry.</h1><p>A requirement checker for hackathon rules, contest calls and scholarship postings.</p><div class="f">Everything shown is the running app. Captions only, no sound. Each scene says in the corner whether it replays saved model responses.</div>`),
   numbers: card(`<div class="k">How it was tested</div>
 <table><tr><td>Required items found in the notices</td><td class="n">87.0% (80 of 92)</td></tr>
 <tr><td>Listed items that match the answer key</td><td class="n">97.3% (108 of 111)</td></tr>
-<tr><td>Planted gaps caught (drafts with one part removed)</td><td class="n">4 of 6</td></tr>
+<tr><td>Planted gaps caught (drafts with one part removed), the app's default prompt</td><td class="n">4 of 6</td></tr>
 <tr><td>First two rows with keyword search, no AI</td><td class="n">55.4% and 51.2%</td></tr></table>
 <p class="s">5 notices, an answer key of 145 items written before the build by two AI models. No human verified the key.</p>
 <p class="s">Limits: the number of rows changes between runs of the same notice, and some Met verdicts were too generous.</p>`),
-  close: card(`<div class="k">ReqLens</div><h1>It checks text against text. It does not predict judging.</h1><p>reqlens-two.vercel.app</p><p class="s">The failure in this video was injected on purpose. Scenes marked Recorded replay saved model responses.</p>`),
+  close: card(`<div class="k">ReqLens</div><h1>It checks text against text. It does not predict judging.</h1><p>reqlens-two.vercel.app<br>github.com/coo001/reqlens</p><div class="f">The failure in this video was injected on purpose. Scenes marked "Recorded" replay saved Gemini responses; no scene here is a live call. Numbers are from eval/results.md in the repository.</div>`),
 };
 const { chromium } = await import(process.env.PW ?? "playwright");
 const browser = await chromium.launch({ headless: true, args: ["--mute-audio"] });
@@ -57,7 +57,8 @@ const SEGS = [
   [main, M.check_done + 1.4 + (M.tour_done - M.check_done - 1.4) * 0.55, M.tour_done, 9, "What text cannot prove is set aside for you to confirm. No verdict is invented.", runLabel],
   [main, M.tour_done, M.recheck_clicked, 8, "The draft never said how its AI works. Add that paragraph and re-check.", runLabel],
   [main, M.recheck_clicked, M.recheck_done + 1.4, 5, "Only the comparison runs again.", runLabel, true],
-  [main, M.recheck_done + 1.4, M.recheck_tour_done, null, "Verdicts that changed since the last check are marked.", runLabel],
+  [main, M.recheck_done + 1.4, M.recheck_tour_done, 10, "5 verdicts changed. Each changed row shows what it was before.", runLabel],
+  ...(M.better_done ? [[main, M.recheck_tour_done, M.better_done, null, "The AI details row is now Met. Three other rows changed the other way; each shows its reason.", runLabel]] : []),
   ["long", L.check_clicked, L.fold_open + 0.8, null, "A harder case: this hackathon's own rules against our own early write-up. Met rows fold away so the gaps come first.", longLabel],
   ["long", L.recheck_clicked, L.recheck_tour_done, null, "After a rewrite, 15 verdicts changed. One requirement was still missing.", longLabel],
   ["fault", F.sample_clicked - 0.3, F.recovered + 5.5, null, "When the model is overloaded, the requirement list is kept and the next try starts from the comparison.", "Recorded sample, failure injected on purpose"],

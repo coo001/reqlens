@@ -30,3 +30,10 @@ Notes for the edit:
 - Scenes 2 to 7 use `pair`: the same notice and drafts as the live scene, but with saved Gemini responses replayed (`REPLAY=1`), and labelled so in the corner. Three more live tries on Nov 26 ended in 503 or a 100 s timeout, so there is still no live footage. When `record.sh live` succeeds, run `edit.mjs live`.
 - Scene 11 numbers are from `eval/results.md`: 87.0% (80/92), 97.3% (108/111), planted gaps 4 of 6 with compare-v2, keyword baseline 55.4% and 51.2%.
 - To check before the final cut: after the re-check the summary reads "5 verdicts changed" and two rows go from Met to Partial. Confirm that the AI-details row does improve, or change the caption.
+
+## Cut v1 (2026-11-26, third run)
+
+`demo_v1.mp4` (2:39, 1920x1080, captions burned in, silent audio track), built by `edit.mjs pair`.
+- Still no live footage: a short test call at about 10:05 KST came back 503 in 1.2 s, so `record.sh live` was not run. All app scenes replay saved Gemini responses and say so in the corner; the closing card says no scene is a live call.
+- Re-check scene, checked on the page: 5 verdicts changed. R12 (AI details) and R15 went Partial to Met; R04 and R05 went Met to Partial; R17 went Met to Check yourself. The recording now opens the Met group and stops on R12, and the caption says three other rows changed the other way.
+- Cards: text centred, a footer line on the title and closing cards, repository link added, numbers kept on one line. "4 of 6" is labelled as the app's default prompt (compare-v2).

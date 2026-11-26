@@ -1,0 +1,96 @@
+{
+  "main": "pair",
+  "total": 158.58,
+  "cues": [
+    {
+      "a": 0,
+      "b": 7,
+      "text": "",
+      "label": ""
+    },
+    {
+      "a": 7,
+      "b": 13,
+      "text": "ReqLens puts every requirement next to the part of your draft that answers it.",
+      "label": ""
+    },
+    {
+      "a": 13,
+      "b": 22,
+      "text": "Paste the rules and your draft, then check.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 22,
+      "b": 30,
+      "text": "Gemini lists the requirements. Code keeps a quote only if it is in the rules word for word.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 30,
+      "b": 41,
+      "text": "Each row shows the rule's sentence, the verdict and the draft sentence used as proof.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 41,
+      "b": 50,
+      "text": "What text cannot prove is set aside for you to confirm. No verdict is invented.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 50,
+      "b": 58,
+      "text": "The draft never said how its AI works. Add that paragraph and re-check.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 58,
+      "b": 63,
+      "text": "Only the comparison runs again.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 63,
+      "b": 73,
+      "text": "5 verdicts changed. Each changed row shows what it was before.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 73,
+      "b": 83.44999999999999,
+      "text": "The AI details row is now Met. Three other rows changed the other way; each shows its reason.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 83.44999999999999,
+      "b": 104.80999999999999,
+      "text": "A harder case: this hackathon's own rules against our own early write-up. Met rows fold away so the gaps come first.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 104.80999999999999,
+      "b": 120.13999999999999,
+      "text": "After a rewrite, 15 verdicts changed. One requirement was still missing.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 120.13999999999999,
+      "b": 136.57999999999998,
+      "text": "When the model is overloaded, the requirement list is kept and the next try starts from the comparison.",
+      "label": "Recorded sample, failure injected on purpose"
+    },
+    {
+      "a": 136.57999999999998,
+      "b": 150.57999999999998,
+      "text": "",
+      "label": ""
+    },
+    {
+      "a": 150.57999999999998,
+      "b": 158.57999999999998,
+      "text": "",
+      "label": ""
+    }
+  ]
+}
