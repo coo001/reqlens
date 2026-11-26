@@ -1,0 +1,96 @@
+{
+  "main": "live",
+  "total": 158.5,
+  "cues": [
+    {
+      "a": 0,
+      "b": 7,
+      "text": "",
+      "label": ""
+    },
+    {
+      "a": 7,
+      "b": 13,
+      "text": "ReqLens puts each requirement it finds next to the part of your draft that answers it.",
+      "label": ""
+    },
+    {
+      "a": 13,
+      "b": 22,
+      "text": "Paste the rules and your draft. This run is live: real calls to Gemini.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 22,
+      "b": 30,
+      "text": "The first call timed out; the app tried once more. Gemini lists the requirements, code keeps only word-for-word quotes.",
+      "label": "Live run: real calls to Gemini  ·  waiting shortened: 247 s shown in 8 s"
+    },
+    {
+      "a": 30,
+      "b": 41,
+      "text": "Each row shows the rule's sentence, the verdict and the draft sentence used as proof.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 41,
+      "b": 50,
+      "text": "What text cannot prove is set aside for you to confirm. No verdict is invented.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 50,
+      "b": 58,
+      "text": "Top row, Partial: the draft names the Gemini API but not how it is used. Add that paragraph and re-check.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 58,
+      "b": 63,
+      "text": "Only the comparison runs again. It also needed a second try.",
+      "label": "Live run: real calls to Gemini  ·  waiting shortened: 192 s shown in 5 s"
+    },
+    {
+      "a": 63,
+      "b": 73,
+      "text": "7 verdicts changed. Each changed row shows what it was before.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 73,
+      "b": 83.37,
+      "text": "The AI details row is now Met. Six other rows moved to Partial, though the edit was not aimed at them.",
+      "label": "Live run: real calls to Gemini"
+    },
+    {
+      "a": 83.37,
+      "b": 104.73,
+      "text": "A harder case: this hackathon's own rules against our own early write-up. Met rows fold away so the gaps come first.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 104.73,
+      "b": 120.06,
+      "text": "After a rewrite, 15 verdicts changed. One requirement was still missing.",
+      "label": "Recorded run: saved Gemini responses, replayed"
+    },
+    {
+      "a": 120.06,
+      "b": 136.5,
+      "text": "When the model is overloaded, the requirement list is kept and the next try starts from the comparison.",
+      "label": "Recorded sample, failure injected on purpose"
+    },
+    {
+      "a": 136.5,
+      "b": 150.5,
+      "text": "",
+      "label": ""
+    },
+    {
+      "a": 150.5,
+      "b": 158.5,
+      "text": "",
+      "label": ""
+    }
+  ]
+}

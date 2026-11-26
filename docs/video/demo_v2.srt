@@ -1,0 +1,47 @@
+1
+00:00:07,000 --> 00:00:12,950
+ReqLens puts each requirement it finds next to the part of your draft that answers it.
+
+2
+00:00:13,000 --> 00:00:21,950
+Paste the rules and your draft. This run is live: real calls to Gemini.
+
+3
+00:00:22,000 --> 00:00:29,950
+The first call timed out; the app tried once more. Gemini lists the requirements, code keeps only word-for-word quotes.
+
+4
+00:00:30,000 --> 00:00:40,950
+Each row shows the rule's sentence, the verdict and the draft sentence used as proof.
+
+5
+00:00:41,000 --> 00:00:49,950
+What text cannot prove is set aside for you to confirm. No verdict is invented.
+
+6
+00:00:50,000 --> 00:00:57,950
+Top row, Partial: the draft names the Gemini API but not how it is used. Add that paragraph and re-check.
+
+7
+00:00:58,000 --> 00:01:02,950
+Only the comparison runs again. It also needed a second try.
+
+8
+00:01:03,000 --> 00:01:12,950
+7 verdicts changed. Each changed row shows what it was before.
+
+9
+00:01:13,000 --> 00:01:23,320
+The AI details row is now Met. Six other rows moved to Partial, though the edit was not aimed at them.
+
+10
+00:01:23,370 --> 00:01:44,680
+A harder case: this hackathon's own rules against our own early write-up. Met rows fold away so the gaps come first.
+
+11
+00:01:44,730 --> 00:02:00,010
+After a rewrite, 15 verdicts changed. One requirement was still missing.
+
+12
+00:02:00,060 --> 00:02:16,450
+When the model is overloaded, the requirement list is kept and the next try starts from the comparison.

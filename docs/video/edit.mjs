@@ -1,6 +1,7 @@
 // Cuts the recorded scenes into the demo video with burned-in captions. Silent (a silent audio track is added).
 // Usage: PW=/path/to/playwright/index.mjs FF=/path/to/ffmpeg node docs/video/edit.mjs <pair|live> [out.mp4]
-// Scene order follows docs/video/script_v0.md. Numbers on the results card are copied from eval/results.md.
+// Scene order follows docs/video/script_v0.md. With "live" the captions describe the live run recorded on Nov 27, 2026
+// (27 requirements, 7 verdicts changed, one timed-out call retried in each check); re-read them if that scene is recorded again. Numbers on the results card are copied from eval/results.md.
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
@@ -35,7 +36,7 @@ const CARDS = {
 <tr><td>First two rows with keyword search, no AI</td><td class="n">55.4% and 51.2%</td></tr></table>
 <p class="s">5 notices, an answer key of 145 items written before the build by two AI models. No human verified the key.</p>
 <p class="s">Limits: the number of rows changes between runs of the same notice, and some Met verdicts were too generous.</p>`),
-  close: card(`<div class="k">ReqLens</div><h1>It checks text against text. It does not predict judging.</h1><p>reqlens-two.vercel.app<br>github.com/coo001/reqlens</p><div class="f">The failure in this video was injected on purpose. Scenes marked "Recorded" replay saved Gemini responses; no scene here is a live call. Numbers are from eval/results.md in the repository.</div>`),
+  close: card(`<div class="k">ReqLens</div><h1>It checks text against text. It does not predict judging.</h1><p>reqlens-two.vercel.app<br>github.com/coo001/reqlens</p><div class="f">The failure in this video was injected on purpose. Scenes marked "Recorded" replay saved Gemini responses; ${isLive ? "the first scene is a live run, with waiting shortened as labelled" : "no scene here is a live call"}. Numbers are from eval/results.md in the repository.</div>`),
 };
 const { chromium } = await import(process.env.PW ?? "playwright");
 const browser = await chromium.launch({ headless: true, args: ["--mute-audio"] });
@@ -50,15 +51,15 @@ await browser.close();
 const longLabel = "Recorded run: saved Gemini responses, replayed";
 const SEGS = [
   ["card:title", 0, 7, null, "", ""],
-  [main, M.open + 0.2, M.notice_pasted - 0.1, 6, "ReqLens puts every requirement next to the part of your draft that answers it.", ""],
-  [main, M.notice_pasted - 0.1, M.check_clicked, 9, isLive ? "Paste the rules and your draft. This run is live: two calls to Gemini." : "Paste the rules and your draft, then check.", runLabel],
-  [main, M.check_clicked, M.check_done + 1.4, 8, "Gemini lists the requirements. Code keeps a quote only if it is in the rules word for word.", runLabel, true],
+  [main, M.open + 0.2, M.notice_pasted - 0.1, 6, "ReqLens puts each requirement it finds next to the part of your draft that answers it.", ""],
+  [main, M.notice_pasted - 0.1, M.check_clicked, 9, isLive ? "Paste the rules and your draft. This run is live: real calls to Gemini." : "Paste the rules and your draft, then check.", runLabel],
+  [main, M.check_clicked, M.check_done + 1.4, 8, isLive ? "The first call timed out; the app tried once more. Gemini lists the requirements, code keeps only word-for-word quotes." : "Gemini lists the requirements. Code keeps a quote only if it is in the rules word for word.", runLabel, true],
   [main, M.check_done + 1.4, M.check_done + 1.4 + (M.tour_done - M.check_done - 1.4) * 0.55, 11, "Each row shows the rule's sentence, the verdict and the draft sentence used as proof.", runLabel],
   [main, M.check_done + 1.4 + (M.tour_done - M.check_done - 1.4) * 0.55, M.tour_done, 9, "What text cannot prove is set aside for you to confirm. No verdict is invented.", runLabel],
-  [main, M.tour_done, M.recheck_clicked, 8, "The draft never said how its AI works. Add that paragraph and re-check.", runLabel],
-  [main, M.recheck_clicked, M.recheck_done + 1.4, 5, "Only the comparison runs again.", runLabel, true],
-  [main, M.recheck_done + 1.4, M.recheck_tour_done, 10, "5 verdicts changed. Each changed row shows what it was before.", runLabel],
-  ...(M.better_done ? [[main, M.recheck_tour_done, M.better_done, null, "The AI details row is now Met. Three other rows changed the other way; each shows its reason.", runLabel]] : []),
+  [main, M.tour_done, M.recheck_clicked, 8, isLive ? "Top row, Partial: the draft names the Gemini API but not how it is used. Add that paragraph and re-check." : "The draft never said how its AI works. Add that paragraph and re-check.", runLabel],
+  [main, M.recheck_clicked, M.recheck_done + 1.4, 5, isLive ? "Only the comparison runs again. It also needed a second try." : "Only the comparison runs again.", runLabel, true],
+  [main, M.recheck_done + 1.4, M.recheck_tour_done, 10, (isLive ? "7" : "5") + " verdicts changed. Each changed row shows what it was before.", runLabel],
+  ...(M.better_done ? [[main, M.recheck_tour_done, M.better_done, null, isLive ? "The AI details row is now Met. Six other rows moved to Partial, though the edit was not aimed at them." : "The AI details row is now Met. Three other rows changed the other way; each shows its reason.", runLabel]] : []),
   ["long", L.check_clicked, L.fold_open + 0.8, null, "A harder case: this hackathon's own rules against our own early write-up. Met rows fold away so the gaps come first.", longLabel],
   ["long", L.recheck_clicked, L.recheck_tour_done, null, "After a rewrite, 15 verdicts changed. One requirement was still missing.", longLabel],
   ["fault", F.sample_clicked - 0.3, F.recovered + 5.5, null, "When the model is overloaded, the requirement list is kept and the next try starts from the comparison.", "Recorded sample, failure injected on purpose"],

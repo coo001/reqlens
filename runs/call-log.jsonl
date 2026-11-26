@@ -69,3 +69,8 @@
 {"date":"2026-11-26","at":"2026-11-26T00:16:21.653Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":"timeout"}
 {"date":"2026-11-26","at":"2026-11-26T00:20:50.177Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":"timeout"}
 {"date":"2026-11-26","at":"2026-11-26T00:22:33.219Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-27","at":"2026-11-26T23:15:45.704Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":"timeout"}
+{"date":"2026-11-27","at":"2026-11-26T23:17:22.588Z","stage":"extract","model":"gemini-3.5-flash","runId":"extract__extract-v1__gemini-3.5-flash__e056488a2e9bdf5f","status":200,"durationMs":93837}
+{"date":"2026-11-27","at":"2026-11-26T23:18:11.332Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__8728a4d7d11d3a9d","status":200,"durationMs":48695}
+{"date":"2026-11-27","at":"2026-11-26T23:20:15.872Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__5bd09f745930a242","status":"timeout"}
+{"date":"2026-11-27","at":"2026-11-26T23:21:46.495Z","stage":"compare","model":"gemini-3.5-flash","runId":"compare__compare-v2__gemini-3.5-flash__5bd09f745930a242","status":200,"durationMs":87592}

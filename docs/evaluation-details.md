@@ -75,9 +75,10 @@ The answer key was written independently by two AI models from different compani
 ## 7. Live calls and timing
 
 - Nov 22 to 25: live calls with the default prompts that returned requirements took 12 to 76 s each. On the deployed site one comparison took 75.9 s and finished.
-- Nov 26, while recording the video: seven live calls, one answered (76 s), the others ended in 503 or the 100 s timeout. The video therefore replays saved responses in every app scene.
+- Nov 26, while recording the video: seven live calls, one answered (76 s), the others ended in 503 or the 100 s timeout. The first cut of the video therefore replayed saved responses in every app scene.
+- Nov 27, recording the live scene now in the video: one short test call answered in 51 s. The recorded run then made five calls: the first extraction timed out at 100 s, the automatic retry answered in 94 s, the comparison in 49 s; in the re-check the comparison timed out once and the retry answered in 88 s. The checks took 246 s and 191 s on screen. That run was not saved to `runs/` and is not part of `eval/results.md`.
 - Row counts vary: the same short notice gave 30, 22 and 23 rows on different days (all three contain the 22 required items); this challenge's rules gave 30 rows in one run and 54 in another. The same pair checked twice within four minutes gave 2 and then 1 Missing row.
-- In the re-check shown in the video, 5 verdicts changed: 2 improved after the added paragraph, and 3 rows the edit did not address went from Met to Partial or Check yourself.
+- In the live re-check shown in the video (27 rows), 7 verdicts changed: the AI-details row went from Partial to Met after the added paragraph, 2 rows went from Met to Partial and 4 scoring-criterion rows from Check yourself to Partial. In the replayed version of the same scene used in the first cut, 5 changed: 2 improved and 3 rows the edit did not address went from Met to Partial or Check yourself.
 
 ## 8. Model name
 
